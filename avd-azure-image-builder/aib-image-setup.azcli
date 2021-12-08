@@ -18,6 +18,8 @@ imageName=aibWinImage
 
 subscriptionID=$(az account show --query id --output tsv)
 
+wait
+
 #Create resource group
 az group create -n $imageResourceGroup -l $location
 
@@ -26,6 +28,8 @@ az group create -n $imageResourceGroup -l $location
 # create user assigned identity for image builder to access the storage account where the script is located
 identityName=aibBuiUserId$(date +'%s')
 az identity create -g $imageResourceGroup -n $identityName
+
+wait
 
 # get identity id
 imgBuilderCliId=$(az identity show -g $imageResourceGroup -n $identityName --query clientId -o tsv)
@@ -38,6 +42,8 @@ curl https://raw.githubusercontent.com/azure/azvmimagebuilder/master/solutions/1
 
 imageRoleDefName="Azure Image Builder Image Def"$(date +'%s')
 
+wait
+
 # update the definition
 sed -i -e "s/<subscriptionID>/$subscriptionID/g" aibRoleImageCreation.json
 sed -i -e "s/<rgName>/$imageResourceGroup/g" aibRoleImageCreation.json
@@ -45,6 +51,8 @@ sed -i -e "s/Azure Image Builder Service Image Creation Role/$imageRoleDefName/g
 
 # create role definitions
 az role definition create --role-definition ./aibRoleImageCreation.json
+
+wait
 
 # grant role definition to the user assigned identity
 az role assignment create \
@@ -54,7 +62,9 @@ az role assignment create \
 
 ####################### Download the image configuration template example (here you can put your own GitHub link), and modify the .json file with your own parameters defined above
 
-curl https://raw.githubusercontent.com/azure/azvmimagebuilder/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/helloImageTemplateWin.json -o helloImageTemplateWin.json
+curl https://github.com/gbeaud/avd-automated-pipeline/blob/main/avd-azure-image-builder/helloImageTemplateWin.json -o helloImageTemplateWin.json
+
+wait
 
 sed -i -e "s/<subscriptionID>/$subscriptionID/g" helloImageTemplateWin.json
 sed -i -e "s/<rgName>/$imageResourceGroup/g" helloImageTemplateWin.json
@@ -65,12 +75,14 @@ sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" helloImageTemplateWin.json
 
 ######################## Create the image
 
+wait
+
 # Submit the image configuration to the VM Image Builder service
 az resource create \
     --resource-group $imageResourceGroup \
     --properties @helloImageTemplateWin.json \
     --is-full-object \
-    --name helloImageTemplateWin01 \
+    --name helloImageTemplateWin02 \
     --resource-type Microsoft.VirtualMachineImages/imageTemplates
 
 
