@@ -62,7 +62,7 @@ az role assignment create \
 
 ####################### Download the image configuration template example (here you can put your own GitHub link), and modify the .json file with your own parameters defined above
 
-curl https://github.com/gbeaud/avd-automated-pipeline/blob/main/avd-azure-image-builder/helloImageTemplateWin.json -o helloImageTemplateWin.json
+curl https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-azure-image-builder/StandardTemplateWin.json -o helloImageTemplateWin.json
 
 wait
 
