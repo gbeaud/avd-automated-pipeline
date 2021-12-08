@@ -1,0 +1,29 @@
+{ 
+    "type": "Microsoft.VirtualMachineImages/imageTemplates", 
+    "apiVersion": "2020-02-14", 
+    "location": "westeu", 
+    "tags": {
+      "environment": "test",
+      "workload": "avd"
+    },
+    "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+            "<imgBuilderId>": {}
+        }
+    },			 
+    "properties": { 
+      "buildTimeoutInMinutes": <minutes>, 
+      "vmProfile": {
+        "vmSize": "<vmSize>",
+        "proxyVmSize": "<vmSize>",
+        "osDiskSizeGB": 0,
+        "vnetConfig": {
+          "subnetId": "/subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-westeu-test-01/providers/Microsoft.Network/virtualNetworks/vnet-avd-terraform/subnets/default"
+        }
+      },
+      "source": {}, 
+      "customize": {}, 
+      "distribute": {} 
+    } 
+  }

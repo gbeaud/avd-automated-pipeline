@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# Link to tutorial: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/image-builder
+# This runs well in a cloud shell but not on a local shell (bug during)
+
+############ Initial basic settings
+
+# Resource group name - we are using ibsigRG in this example
+imageResourceGroup=rg-imagebuilder-weu-1
+# Datacenter location - we are using West US 2 in this example
+location=westeurope
+# Additional region to replicate the image to - we are using East US in this example
+#additionalregion=eastus
+# Run output name
+runOutputName=aibWindows
+# name of the image to be created
+imageName=aibWinImage
+
+subscriptionID=$(az account show --query id --output tsv)
+
+#Create resource group
+az group create -n $imageResourceGroup -l $location
+
+############# Create user-assigned managed identity and grant permissions
+
+# create user assigned identity for image builder to access the storage account where the script is located
+identityName=aibBuiUserId$(date +'%s')
+az identity create -g $imageResourceGroup -n $identityName
+
+# get identity id
+imgBuilderCliId=$(az identity show -g $imageResourceGroup -n $identityName --query clientId -o tsv)
+
+# get the user identity URI, needed for the template
+imgBuilderId=/subscriptions/$subscriptionID/resourcegroups/$imageResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/$identityName
+
+# download preconfigured role definition example
+curl https://raw.githubusercontent.com/azure/azvmimagebuilder/master/solutions/12_Creating_AIB_Security_Roles/aibRoleImageCreation.json -o aibRoleImageCreation.json
+
+imageRoleDefName="Azure Image Builder Image Def"$(date +'%s')
+
+# update the definition
+sed -i -e "s/<subscriptionID>/$subscriptionID/g" aibRoleImageCreation.json
+sed -i -e "s/<rgName>/$imageResourceGroup/g" aibRoleImageCreation.json
+sed -i -e "s/Azure Image Builder Service Image Creation Role/$imageRoleDefName/g" aibRoleImageCreation.json
+
+# create role definitions
+az role definition create --role-definition ./aibRoleImageCreation.json
+
+# grant role definition to the user assigned identity
+az role assignment create \
+    --assignee $imgBuilderCliId \
+    --role "$imageRoleDefName" \
+    --scope /subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup
+
+####################### Download the image configuration template example (here you can put your own GitHub link), and modify the .json file with your own parameters defined above
+
+curl https://raw.githubusercontent.com/azure/azvmimagebuilder/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/helloImageTemplateWin.json -o helloImageTemplateWin.json
+
+sed -i -e "s/<subscriptionID>/$subscriptionID/g" helloImageTemplateWin.json
+sed -i -e "s/<rgName>/$imageResourceGroup/g" helloImageTemplateWin.json
+sed -i -e "s/<region>/$location/g" helloImageTemplateWin.json
+sed -i -e "s/<imageName>/$imageName/g" helloImageTemplateWin.json
+sed -i -e "s/<runOutputName>/$runOutputName/g" helloImageTemplateWin.json
+sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" helloImageTemplateWin.json
+
+######################## Create the image
+
+# Submit the image configuration to the VM Image Builder service
+az resource create \
+    --resource-group $imageResourceGroup \
+    --properties @helloImageTemplateWin.json \
+    --is-full-object \
+    --name helloImageTemplateWin01 \
+    --resource-type Microsoft.VirtualMachineImages/imageTemplates
+
+
+
+rg-imagebuilder-weu-19-488d-a73e-666707f38f1f
+
+d351604a-5f79-488d-a73e-666707f38f1f
+
+/subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-imagebuilder-weu-19-488d-a73e-666707f38f1f
