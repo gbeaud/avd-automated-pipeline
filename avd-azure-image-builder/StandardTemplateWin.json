@@ -37,7 +37,7 @@
                 "type": "PowerShell",
                 "name": "CreateBuildPath",
                 "runElevated": false,
-                "scriptUri": "https://raw.githubusercontent.com/danielsollondon/azvmimagebuilder/master/testPsScript.ps1"
+                "scriptUri": "https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-azure-image-builder/ImageConfigurations.ps1"
             },
             {
                 "type": "WindowsRestart",
