@@ -1,7 +1,7 @@
 {
     "type": "Microsoft.VirtualMachineImages/imageTemplates",
     "apiVersion": "2020-02-14",
-    "location": "westeurope",
+    "location": "<region>",
     "dependsOn": [],
     "tags": {
         "imagebuilderTemplate": "windows2019",
@@ -10,7 +10,7 @@
         "identity": {
             "type": "UserAssigned",
                     "userAssignedIdentities": {
-                    "": {}
+                    "<imgBuilderId>": {}
                         
                 }
                 },
@@ -20,7 +20,7 @@
 
         "vmProfile": 
                 {
-                "vmSize": "Standard_D2s_v3",
+                "vmSize": "Standard_D2_v2",
                 "osDiskSizeGB": 127
                 },
         
@@ -37,7 +37,7 @@
                 "type": "PowerShell",
                 "name": "CreateBuildPath",
                 "runElevated": false,
-                "scriptUri": "https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-azure-image-builder/ImageConfigurations.ps1"
+                "scriptUri": "https://raw.githubusercontent.com/danielsollondon/azvmimagebuilder/master/testPsScript.ps1"
             },
             {
                 "type": "WindowsRestart",
@@ -57,7 +57,7 @@
                 "runElevated": false,
                 "inline": [
                     "mkdir c:\\buildActions",
-                    "echo Azure-Image-Builder-Was-Here-too-3  > c:\\buildActions\\buildActionsOutput.txt"
+                    "echo Azure-Image-Builder-Was-Here  > c:\\buildActions\\buildActionsOutput.txt"
                 ]
                 },
                 {
@@ -73,9 +73,9 @@
         "distribute": 
             [
                 {   "type":"ManagedImage",
-                    "imageId": "/subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup/providers/Microsoft.Compute/images/aibWinImage",
-                    "location": "westeurope",
-                    "runOutputName": "aibWindows",
+                    "imageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/images/<imageName>",
+                    "location": "<region>",
+                    "runOutputName": "<runOutputName>",
                     "artifactTags": {
                         "source": "azVmImageBuilder",
                         "baseosimg": "windows2019"
@@ -84,4 +84,3 @@
             ]
         }
 }
-
