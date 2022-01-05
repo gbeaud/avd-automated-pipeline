@@ -1,60 +1,52 @@
 #!/bin/bash
 
 # Link to tutorial: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/image-builder
-# This runs well in a cloud shell but not on a local shell (bug during)
+# This script should be run in cloud shell, not on a local shell
 
-############ Initial basic settings
+############ Initial settings
 
-# Resource group name - we are using ibsigRG in this example
-imageResourceGroup=rg-imagebuilder-weu-1
-# Datacenter location - we are using West US 2 in this example
+# Define the resource group's name
+imageResourceGroup=rg-imagebuilder-weu-2
+# Datacenter location
 location=westeurope
-# Additional region to replicate the image to - we are using East US in this example
+# Additional region to replicate the image to (optional)
 #additionalregion=eastus
 # Run output name
 runOutputName=aibWindows
-# name of the image to be created
+# Name of the image to be created
 imageName=aibWinImage
 
 subscriptionID=$(az account show --query id --output tsv)
 
-wait
-
-#Create resource group
+# Create resource group
 az group create -n $imageResourceGroup -l $location
 
 ############# Create user-assigned managed identity and grant permissions
 
-# create user assigned identity for image builder to access the storage account where the script is located
+# Create user assigned identity for image builder to access the storage account where the script is located
 identityName=aibBuiUserId$(date +'%s')
 az identity create -g $imageResourceGroup -n $identityName
 
-wait
-
-# get identity id
+# Get identity id
 imgBuilderCliId=$(az identity show -g $imageResourceGroup -n $identityName --query clientId -o tsv)
 
-# get the user identity URI, needed for the template
+# Get the user identity URI, needed for the template
 imgBuilderId=/subscriptions/$subscriptionID/resourcegroups/$imageResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/$identityName
 
-# download preconfigured role definition example
+# Download preconfigured role definition example
 curl https://raw.githubusercontent.com/azure/azvmimagebuilder/master/solutions/12_Creating_AIB_Security_Roles/aibRoleImageCreation.json -o aibRoleImageCreation.json
 
 imageRoleDefName="Azure Image Builder Image Def"$(date +'%s')
 
-wait
-
-# update the definition
+# Update the role definition template with parameters corresponding to this execution environment
 sed -i -e "s/<subscriptionID>/$subscriptionID/g" aibRoleImageCreation.json
 sed -i -e "s/<rgName>/$imageResourceGroup/g" aibRoleImageCreation.json
 sed -i -e "s/Azure Image Builder Service Image Creation Role/$imageRoleDefName/g" aibRoleImageCreation.json
 
-# create role definitions
+# Create role definitions
 az role definition create --role-definition ./aibRoleImageCreation.json
 
-wait
-
-# grant role definition to the user assigned identity
+# Grant role definition to the user assigned identity
 az role assignment create \
     --assignee $imgBuilderCliId \
     --role "$imageRoleDefName" \
@@ -64,8 +56,6 @@ az role assignment create \
 
 curl https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-azure-image-builder/StandardTemplateWin.json -o helloImageTemplateWin.json
 
-wait
-
 sed -i -e "s/<subscriptionID>/$subscriptionID/g" helloImageTemplateWin.json
 sed -i -e "s/<rgName>/$imageResourceGroup/g" helloImageTemplateWin.json
 sed -i -e "s/<region>/$location/g" helloImageTemplateWin.json
@@ -73,22 +63,30 @@ sed -i -e "s/<imageName>/$imageName/g" helloImageTemplateWin.json
 sed -i -e "s/<runOutputName>/$runOutputName/g" helloImageTemplateWin.json
 sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" helloImageTemplateWin.json
 
-######################## Create the image
-
-wait
+######################## Create the image template
 
 # Submit the image configuration to the VM Image Builder service
 az resource create \
     --resource-group $imageResourceGroup \
     --properties @helloImageTemplateWin.json \
     --is-full-object \
-    --name helloImageTemplateWin02 \
+    --name helloImageTemplateWin \
     --resource-type Microsoft.VirtualMachineImages/imageTemplates
 
+######################## Builds the image
 
+az resource invoke-action \
+     --resource-group $imageResourceGroup \
+     --resource-type  Microsoft.VirtualMachineImages/imageTemplates \
+     -n helloImageTemplateWin \
+     --action Run
 
-rg-imagebuilder-weu-19-488d-a73e-666707f38f1f
+######################## Create a VM from the image (optional, for testing purpose)
 
-d351604a-5f79-488d-a73e-666707f38f1f
-
-/subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-imagebuilder-weu-19-488d-a73e-666707f38f1f
+az vm create \
+  --resource-group $imageResourceGroup \
+  --name aibImgWinVm00 \
+  --admin-username admin \
+  --admin-password Vm-password-123 \
+  --image $imageName \
+  --location $location
