@@ -4,7 +4,7 @@
     "location": "<region>",
     "dependsOn": [],
     "tags": {
-        "imagebuilderTemplate": "windows2019",
+        "imagebuilderTemplate": "windows10-multi-session",
         "userIdentity": "enabled"
             },
         "identity": {
@@ -25,10 +25,10 @@
                 },
         
         "source": {
-            "type": "PlatformImage",
-                "publisher": "MicrosoftWindowsServer",
-                "offer": "WindowsServer",
-                "sku": "2019-Datacenter",
+                "type": "PlatformImage",
+                "publisher": "microsoftwindowsdesktop",
+                "offer": "office-365",
+                "sku": "20h2-evd-o365pp-g2",
                 "version": "latest"
             
         },
@@ -78,7 +78,7 @@
                     "runOutputName": "<runOutputName>",
                     "artifactTags": {
                         "source": "azVmImageBuilder",
-                        "baseosimg": "windows2019"
+                        "baseosimg": "windows10-multi-session"
                     }
                 }
             ]

@@ -20,7 +20,7 @@
 
         "vmProfile": 
                 {
-                "vmSize": "Standard_D2s_v3",
+                "vmSize": "Standard_D2_v2",
                 "osDiskSizeGB": 127
                 },
         
@@ -57,7 +57,7 @@
                 "runElevated": false,
                 "inline": [
                     "mkdir c:\\buildActions",
-                    "echo Azure-Image-Builder-Was-Here-too-3  > c:\\buildActions\\buildActionsOutput.txt"
+                    "echo Azure-Image-Builder-Was-Here  > c:\\buildActions\\buildActionsOutput.txt"
                 ]
                 },
                 {
@@ -70,7 +70,6 @@
                     "updateLimit": 20
                 }
         ],
-        
         "distribute": 
             [
                 {   "type":"ManagedImage",
@@ -85,4 +84,3 @@
             ]
         }
 }
-

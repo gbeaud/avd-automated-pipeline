@@ -2,6 +2,7 @@
 
 # This script creates a VM image from configuration files hosted on GitHub
 # Link to tutorial: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/image-builder
+# This script should be run in cloud shell, not on a local shell due to potential issues when identifying the resource provider for the image template
 
 
 ######################## Register the features
