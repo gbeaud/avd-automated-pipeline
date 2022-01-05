@@ -2,7 +2,6 @@
 
 # This script creates a VM image from configuration files hosted on GitHub
 # Link to tutorial: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/image-builder
-# This script should be run in cloud shell, not on a local shell
 
 
 ######################## Register the features
@@ -99,6 +98,7 @@ az resource create \
 
 ######################## Builds the image
 
+# This may take about 15 minutes
 az resource invoke-action \
      --resource-group $imageResourceGroup \
      --resource-type  Microsoft.VirtualMachineImages/imageTemplates \
@@ -110,7 +110,7 @@ az resource invoke-action \
 az vm create \
   --resource-group $imageResourceGroup \
   --name aibImgWinVm00 \
-  --admin-username admin \
-  --admin-password Vm-password-123 \
+  --admin-username admin123 \
+  --admin-password Vm-pwd-123456789 \
   --image $imageName \
   --location $location
