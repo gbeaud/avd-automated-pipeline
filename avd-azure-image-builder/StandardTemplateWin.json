@@ -30,7 +30,6 @@
                 "offer": "office-365",
                 "sku": "20h2-evd-o365pp-g2",
                 "version": "latest"
-            
         },
         "customize": [
             {
