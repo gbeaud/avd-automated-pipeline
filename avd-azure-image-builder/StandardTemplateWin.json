@@ -73,7 +73,7 @@
         "distribute": 
             [
                 {   "type":"ManagedImage",
-                    "imageId": "/subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup/providers/Microsoft.Compute/images/aibWinImage",
+                    "imageId": "/subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-imagebuilder-weu-2/providers/Microsoft.Compute/images/aibWinImage",
                     "location": "westeurope",
                     "runOutputName": "aibWindows",
                     "artifactTags": {
