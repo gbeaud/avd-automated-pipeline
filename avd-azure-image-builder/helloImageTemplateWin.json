@@ -70,6 +70,7 @@
                     "updateLimit": 20
                 }
         ],
+        
         "distribute": 
             [
                 {   "type":"ManagedImage",
