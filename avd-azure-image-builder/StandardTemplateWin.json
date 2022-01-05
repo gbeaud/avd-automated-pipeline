@@ -57,7 +57,7 @@
                 "runElevated": false,
                 "inline": [
                     "mkdir c:\\buildActions",
-                    "echo Azure-Image-Builder-Was-Here-too-2  > c:\\buildActions\\buildActionsOutput.txt"
+                    "echo Azure-Image-Builder-Was-Here-too-3  > c:\\buildActions\\buildActionsOutput.txt"
                 ]
                 },
                 {
