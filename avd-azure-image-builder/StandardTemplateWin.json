@@ -20,15 +20,15 @@
 
         "vmProfile": 
                 {
-                "vmSize": "Standard_D2_v2",
+                "vmSize": "Standard_D4s_v3",
                 "osDiskSizeGB": 127
                 },
         
         "source": {
                 "type": "PlatformImage",
-                "publisher": "MicrosoftWindowsDesktop",
-                "offer": "Windows-10",
-                "sku": "win10-21h2-avd-g2",
+                "publisher": "microsoftwindowsdesktop",
+                "offer": "office-365",
+                "sku": "20h2-evd-o365pp-g2",
                 "version": "latest"
         },
         "customize": [
