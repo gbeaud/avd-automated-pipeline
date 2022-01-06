@@ -110,8 +110,9 @@ az resource invoke-action \
 
 az vm create \
   --resource-group $imageResourceGroup \
-  --name aibImgWinVm00 \
+  --name vm-aib-image-test-01 \
   --admin-username admin123 \
   --admin-password Vm-pwd-123456789 \
   --image $imageName \
   --location $location
+  --size Standard_D4s_v3
