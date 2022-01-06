@@ -1,25 +1,6 @@
-# Starter pipeline
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'Microsoft Azure Sponsorship 2(d351604a-5f79-488d-a73e-666707f38f1f)'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: 'avd-azure-image-builder/test-azure-devops.azcli'
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-- trigger:
-- main
-
-- pool:
-  vmImage: ubuntu-latest
-
-- steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
