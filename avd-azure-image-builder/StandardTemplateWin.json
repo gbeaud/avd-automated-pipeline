@@ -4,7 +4,7 @@
     "location": "<region>",
     "dependsOn": [],
     "tags": {
-        "imagebuilderTemplate": "windows10-multi-session",
+        "imagebuilderTemplate": "windows2019",
         "userIdentity": "enabled"
             },
         "identity": {
@@ -26,9 +26,9 @@
         
         "source": {
                 "type": "PlatformImage",
-                "publisher": "microsoftwindowsdesktop",
-                "offer": "office-365",
-                "sku": "20h2-evd-o365pp-g2",
+                "publisher": "MicrosoftWindowsDesktop",
+                "offer": "Windows-10",
+                "sku": "win10-21h2-avd-g2",
                 "version": "latest"
         },
         "customize": [
