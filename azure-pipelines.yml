@@ -3,7 +3,7 @@
 steps:
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'Microsoft Azure Sponsorship 2(d351604a-5f79-488d-a73e-666707f38f1f)'
+    azureSubscription: 'Microsoft Azure Sponsorship 2'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: 'avd-azure-image-builder/test-azure-devops.azcli'
