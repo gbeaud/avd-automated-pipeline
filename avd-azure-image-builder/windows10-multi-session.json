@@ -4,7 +4,7 @@
     "location": "<region>",
     "dependsOn": [],
     "tags": {
-        "imagebuilderTemplate": "windows11",
+        "imagebuilderTemplate": "windows2019",
         "userIdentity": "enabled"
             },
         "identity": {
@@ -27,7 +27,7 @@
                 "type": "PlatformImage",
                 "publisher": "microsoftwindowsdesktop",
                 "offer": "office-365",
-                "sku": "win11-21h2-avd-m365",
+                "sku": "20h2-evd-o365pp-g2",
                 "version": "latest"
         },
         "customize": [
@@ -76,7 +76,7 @@
                     "runOutputName": "<runOutputName>",
                     "artifactTags": {
                         "source": "azVmImageBuilder",
-                        "baseosimg": "windows11-multi-session"
+                        "baseosimg": "windows10-multi-session"
                     }
                 }
             ]
