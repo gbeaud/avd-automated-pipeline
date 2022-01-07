@@ -1,1 +1,5 @@
 mkdir hello
+
+az vm create \
+  --resource-group rg-imagebuilder-weu-2 \
+  --name vm-azure-devops-test-01 \
