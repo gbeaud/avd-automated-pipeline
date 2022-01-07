@@ -1,7 +1,7 @@
 {
     "type": "Microsoft.VirtualMachineImages/imageTemplates",
     "apiVersion": "2020-02-14",
-    "location": "<region>",
+    "location": "westeurope",
     "dependsOn": [],
     "tags": {
         "imagebuilderTemplate": "windows11",
@@ -10,7 +10,7 @@
         "identity": {
             "type": "UserAssigned",
                     "userAssignedIdentities": {
-                    "<imgBuilderId>": {}
+                    "": {}
                 }
                 },
     "properties": {
@@ -71,9 +71,9 @@
         "distribute": 
             [
                 {   "type":"ManagedImage",
-                    "imageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/images/<imageName>",
-                    "location": "<region>",
-                    "runOutputName": "<runOutputName>",
+                    "imageId": "/subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-imagebuilder-weu-2/providers/Microsoft.Compute/images/aibWinImage",
+                    "location": "westeurope",
+                    "runOutputName": "aibWindows",
                     "artifactTags": {
                         "source": "azVmImageBuilder",
                         "baseosimg": "windows11-multi"
