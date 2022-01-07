@@ -76,7 +76,7 @@
                     "runOutputName": "<runOutputName>",
                     "artifactTags": {
                         "source": "azVmImageBuilder",
-                        "baseosimg": "windows10-multi-session"
+                        "baseosimg": "windows10multi"
                     }
                 }
             ]
