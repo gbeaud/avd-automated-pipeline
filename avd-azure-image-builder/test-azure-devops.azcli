@@ -1,5 +1,4 @@
-mkdir hello
-
-az vm create \
+az network nsg create \
+  --name nsg-azuredevops-westeu-test-01 \
   --resource-group rg-imagebuilder-weu-2 \
-  --name vm-azure-devops-test-01 \
+  --location westeurope
