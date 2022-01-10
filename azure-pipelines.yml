@@ -16,6 +16,7 @@ steps:
     inlineScript: |
       pwd
       ls
+      cat avd-azure-image-builder/test-azure-devops.azcli
 
 - task: AzureCLI@2
   inputs:
