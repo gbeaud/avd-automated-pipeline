@@ -6,7 +6,7 @@ steps:
     azureSubscription: 'Azure ARM'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az network nsg create --name nsg-azuredevops-westeu-test-04 --resource-group rg-imagebuilder-weu-2 --location westeurope'
+    inlineScript: 'az network nsg create --name nsg-azuredevops-westeu-test-05 --resource-group rg-imagebuilder-weu-2 --location westeurope'
 
 - task: AzureCLI@2
   inputs:
@@ -22,4 +22,4 @@ steps:
     azureSubscription: 'Azure ARM'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
-    scriptPath: 'avd-azure-image-builder\test-azure-devops.azcli'
+    scriptPath: 'avd-azure-image-builder/test-azure-devops.azcli'
