@@ -24,7 +24,7 @@ az provider register -n Microsoft.Storage
 az provider register -n Microsoft.Network
 
 
-############ Initial settings
+############ Variables definitions
 
 # Define the resource group's name
 imageResourceGroup=rg-imagebuilder-weu-2
@@ -34,8 +34,10 @@ location=westeurope
 #additionalregion=eastus
 # Run output name
 runOutputName=aibWindows
+# Name of the new image template
+templateName=image-template-01
 # Name of the image to be created
-imageName=aibWinImage
+imageName=image-01
 
 subscriptionID=$(az account show --query id --output tsv)
 
@@ -86,7 +88,16 @@ sed -i -e "s/<imageName>/$imageName/g" helloImageTemplateWin.json
 sed -i -e "s/<runOutputName>/$runOutputName/g" helloImageTemplateWin.json
 sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" helloImageTemplateWin.json
 
+
+
+
+
 ######################## Create the image template
+
+# Ensures there is no previous template with the same name
+az image builder delete \
+    --name $templateName \
+    --resource-group $imageResourceGroup
 
 # Submit the image configuration to the VM Image Builder service
 # WARNING: there may be a line break at the bottom of the JSON file causing a "LinkedInvalidPropertyId" error. Make sure the file is well formatted! The standard file should not be modified; ref to the original file: https://raw.githubusercontent.com/azure/azvmimagebuilder/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/helloImageTemplateWin.json
@@ -95,13 +106,18 @@ az resource create \
     --resource-type Microsoft.VirtualMachineImages/imageTemplates \
     --properties @helloImageTemplateWin.json \
     --is-full-object \
-    --name helloImageTemplateWin2
+    --name $templateName
 
 ######################## Builds the image
 
-# This may take about 15 minutes
+# Ensures there is no previous image with the same name
+az image delete \
+    --name $imageName \
+    --resource-group $imageResourceGroup
+
+# This may take about 15-20 minutes
 az resource invoke-action \
-     --resource-group $imageResourceGroup \
-     --resource-type  Microsoft.VirtualMachineImages/imageTemplates \
-     --name templateFromAzureDevOps1 \
-     --action Run
+    --resource-group $imageResourceGroup \
+    --resource-type  Microsoft.VirtualMachineImages/imageTemplates \
+    --name $templateName \
+    --action Run

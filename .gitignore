@@ -3,3 +3,5 @@ avd-azure-image-builder/test2.txt
 avd-azure-image-builder/config
 directory/
 /avd-azure-image-builder/config
+/avd-azure-image-builder/test-azure-devops.sh
+/.gitignore
