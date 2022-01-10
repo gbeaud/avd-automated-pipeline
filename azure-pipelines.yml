@@ -6,21 +6,4 @@ steps:
     azureSubscription: 'Azure ARM'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az group create --name rg-azuredevops-westeu-test-01 --location westeurope'
-
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Azure ARM'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'mkdir hello-inline'
-
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Azure ARM'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      az vm create \
-        --resource-group rg-imagebuilder-weu-2 \
-        --name vm-azure-devops-test-01 \
+    inlineScript: 'az network nsg create --name nsg-azuredevops-westeu-test-01 --resource-group rg-imagebuilder-weu-2 --location westeurope'
