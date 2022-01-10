@@ -6,6 +6,13 @@ steps:
     azureSubscription: 'Azure ARM'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
+    inlineScript: 'az group create --name rg-azuredevops-westeu-test-01 --location westeurope'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Azure ARM'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
     inlineScript: 'mkdir hello-inline'
 
 - task: AzureCLI@2
