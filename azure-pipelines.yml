@@ -12,5 +12,14 @@ steps:
   inputs:
     azureSubscription: 'Azure ARM'
     scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      pwd
+      ls
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Azure ARM'
+    scriptType: 'bash'
     scriptLocation: 'scriptPath'
     scriptPath: 'avd-azure-image-builder\test-azure-devops.azcli'
