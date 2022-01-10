@@ -103,5 +103,5 @@ az resource create \
 az resource invoke-action \
      --resource-group $imageResourceGroup \
      --resource-type  Microsoft.VirtualMachineImages/imageTemplates \
-     --name templateFromAzureDevOps \
+     --name templateFromAzureDevOps1 \
      --action Run
