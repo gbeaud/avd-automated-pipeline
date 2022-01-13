@@ -15,9 +15,9 @@ steps:
     scriptLocation: 'scriptPath'
     scriptPath: 'avd-azure-image-builder/aib-image-setup.sh'
 
-trigger:
-  branches:
-    include:
-    - master
-    exclude:
-    - releases/old*
+#trigger:
+#  branches:
+#    include:
+#    - master
+#    exclude:
+#    - releases/old*
