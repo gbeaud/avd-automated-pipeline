@@ -1,0 +1,19 @@
+{
+  "Name": "role-terraform-service-principal-01",
+  "IsCustom": true,
+  "Description": "Ad-hoc role for terraform",
+  "Actions": [
+	"Microsoft.Storage/storageAccounts/blobServices/containers/read",
+  "Microsoft.Authorization/roleAssignments/write",
+  "Microsoft.Authorization/roleAssignments/delete"
+  ],
+  "NotActions": [],
+  "DataActions": [
+	"Microsoft.Storage/storageAccounts/blobServices/containers/blobs/write",
+	"Microsoft.Storage/storageAccounts/blobServices/containers/blobs/add/action"
+  ],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/d351604a-5f79-488d-a73e-666707f38f1f"
+  ]
+}
