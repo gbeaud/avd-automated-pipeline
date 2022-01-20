@@ -30,9 +30,11 @@ jobs:
         uses: Azure/cli@v1
         with:
           # Specify the script here
-          inlineScript: ls
+          inlineScript: |
+            ls
+            pwd
           # Azure CLI version to be used to execute the script. If not provided, latest version is used
-          azcliversion: # optional, default is agentazcliversion
+          azcliversion: 2.30.0
 
 
       # Runs a single command using the runners shell
