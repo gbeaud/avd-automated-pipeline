@@ -35,7 +35,7 @@ runOutputName=aibWindows
 # Name of the new image template
 templateName=image-template-$( date '+%F-%H%M%S' )
 # Name of the image to be created
-imageName=image-2
+imageName=img-win11-multi-session-latest
 
 subscriptionID=$(az account show --query id --output tsv)
 
