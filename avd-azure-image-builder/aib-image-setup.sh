@@ -33,7 +33,7 @@ location=westeurope
 # Run output name
 runOutputName=aibWindows
 # Name of the new image template
-templateName=image-template-$( date '+%F-%H:%M:%S' )
+templateName=image-template-$( date '+%F-%H%M%S' )
 # Name of the image to be created
 imageName=image-2
 
@@ -85,6 +85,8 @@ sed -i -e "s/<region>/$location/g" helloImageTemplateWin.json
 sed -i -e "s/<imageName>/$imageName/g" helloImageTemplateWin.json
 sed -i -e "s/<runOutputName>/$runOutputName/g" helloImageTemplateWin.json
 sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" helloImageTemplateWin.json
+
+echo Template JSON file was created
 
 ######################## Create the image template
 
