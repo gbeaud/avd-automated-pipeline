@@ -33,7 +33,6 @@ jobs:
           # Azure CLI version to be used to execute the script. If not provided, latest version is used
           azcliversion: 2.30.0
           # Specify the script here
-          # $GITHUB_WORKSPACE = variable containing the root github repo
           inlineScript: |
             az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
             ls
