@@ -39,8 +39,6 @@ jobs:
             ls
             pwd
             az account show
-            #chmod +x $GITHUB_WORKSPACE/test.sh
-            cat $GITHUB_WORKSPACE/test.sh
             echo end from CLI action
 
       # Runs a set of commands using the runners shell
