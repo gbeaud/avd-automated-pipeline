@@ -37,7 +37,7 @@ runOutputName=aibWindows
 # Name of the new image template
 templateName=image-template-01
 # Name of the image to be created
-imageName=image-01
+imageName=image-2
 
 subscriptionID=$(az account show --query id --output tsv)
 
@@ -121,3 +121,4 @@ az resource invoke-action \
     --resource-type  Microsoft.VirtualMachineImages/imageTemplates \
     --name $templateName \
     --action Run
+

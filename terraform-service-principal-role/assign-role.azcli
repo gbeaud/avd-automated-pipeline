@@ -1,3 +1,7 @@
+#Create a service principal
+az ad sp create-for-rbac --name "sp-github-actions-azure-devops-01" --role owner `
+    --scopes /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f `
+    --sdk-auth
 
 #Creates the role
 az role definition create --role-definition "role-terraform-service-principal-01.json"
@@ -11,6 +15,5 @@ az role definition list --custom-role-only true
 #Assigns custom role to service principal
 az role assignment create --role "role-terraform-service-principal-01" --assignee "a9521822-6ea3-4d89-bc48-f4a2ef2bf161" --scope "/subscriptions/d351604a-5f79-488d-a73e-666707f38f1f"
 
-
-
+#Assign users to a host pool (Powershell)
 Update-AzWvdSessionHost -HostPoolName hp-avd-terraform-test -Name avd-test-1.azurevirtualdesktopdemo.local -ResourceGroupName rg-avd-terraform-westeu-test-06 -AssignedUser admin@M365x389859.onmicrosoft.com

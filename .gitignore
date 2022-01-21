@@ -4,3 +4,4 @@ avd-azure-image-builder/config
 directory/
 /avd-azure-image-builder/test
 /avd-azure-image-builder/config
+/terraform-service-principal-role
