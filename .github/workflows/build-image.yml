@@ -35,8 +35,6 @@ jobs:
           # $GITHUB_WORKSPACE = variable containing the root github repo
           inlineScript: |
             az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
-            ls
-            pwd
-            chmod +x $GITHUB_WORKSPACE/test.sh
-            $GITHUB_WORKSPACE/test.sh
+            chmod +x $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
+            $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
             echo end from CLI action
