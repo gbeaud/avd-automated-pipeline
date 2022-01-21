@@ -38,5 +38,5 @@ jobs:
             ls
             pwd
             chmod +x $GITHUB_WORKSPACE/test.sh
-            cat $GITHUB_WORKSPACE/test.sh
+            $GITHUB_WORKSPACE/test.sh
             echo end from CLI action
