@@ -4,7 +4,6 @@
 # Link to tutorial: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/image-builder
 # This script should be run in cloud shell, not on a local shell due to potential issues when identifying the resource provider for the image template
 
-
 ######################## Register the features
 
 # To use Azure Image Builder, you need to register the feature. Check your registration:
@@ -23,7 +22,6 @@ az provider register -n Microsoft.KeyVault
 az provider register -n Microsoft.Storage
 az provider register -n Microsoft.Network
 
-
 ############ Variables definitions
 
 # Define the resource group's name
@@ -35,7 +33,7 @@ location=westeurope
 # Run output name
 runOutputName=aibWindows
 # Name of the new image template
-templateName=image-template-01
+templateName=image-template-$( date '+%F-%H:%M:%S' )
 # Name of the image to be created
 imageName=image-2
 
@@ -73,9 +71,9 @@ az role definition create --role-definition ./aibRoleImageCreation.json
 
 # Grant role definition to the user assigned identity
 az role assignment create \
-    --assignee $imgBuilderCliId \
-    --role "$imageRoleDefName" \
-    --scope /subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup
+--assignee $imgBuilderCliId \
+--role "$imageRoleDefName" \
+--scope /subscriptions/$subscriptionID/resourceGroups/$imageResourceGroup
 
 ####################### Download the image configuration template example (here you can put your own GitHub link), and modify the .json file with your own parameters defined above
 
@@ -88,37 +86,35 @@ sed -i -e "s/<imageName>/$imageName/g" helloImageTemplateWin.json
 sed -i -e "s/<runOutputName>/$runOutputName/g" helloImageTemplateWin.json
 sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" helloImageTemplateWin.json
 
-
-
-
-
 ######################## Create the image template
 
 # Ensures there is no previous template with the same name
-az image builder delete \
-    --name $templateName \
-    --resource-group $imageResourceGroup
+#az image builder delete \
+#--name $templateName \
+#--resource-group $imageResourceGroup
+
+# Waits for the deletion to be complete before proceeding
+#az image builder wait --deleted --name $templateName --resource-group $imageResourceGroup
 
 # Submit the image configuration to the VM Image Builder service
 # WARNING: there may be a line break at the bottom of the JSON file causing a "LinkedInvalidPropertyId" error. Make sure the file is well formatted! The standard file should not be modified; ref to the original file: https://raw.githubusercontent.com/azure/azvmimagebuilder/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/helloImageTemplateWin.json
 az resource create \
-    --resource-group $imageResourceGroup \
-    --resource-type Microsoft.VirtualMachineImages/imageTemplates \
-    --properties @helloImageTemplateWin.json \
-    --is-full-object \
-    --name $templateName
+--resource-group $imageResourceGroup \
+--resource-type Microsoft.VirtualMachineImages/imageTemplates \
+--properties @helloImageTemplateWin.json \
+--is-full-object \
+--name $templateName
 
 ######################## Builds the image
 
 # Ensures there is no previous image with the same name
 az image delete \
-    --name $imageName \
-    --resource-group $imageResourceGroup
+--name $imageName \
+--resource-group $imageResourceGroup
 
-# This may take about 15-20 minutes
+# Builds the image (This may take about 15-20 minutes)
 az resource invoke-action \
-    --resource-group $imageResourceGroup \
-    --resource-type  Microsoft.VirtualMachineImages/imageTemplates \
-    --name $templateName \
-    --action Run
-
+--resource-group $imageResourceGroup \
+--resource-type Microsoft.VirtualMachineImages/imageTemplates \
+--name $templateName \
+--action Run
