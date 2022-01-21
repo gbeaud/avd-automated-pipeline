@@ -26,12 +26,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-
       - name: Azure CLI Action
         uses: Azure/cli@v1
         with:
@@ -39,28 +33,12 @@ jobs:
           azcliversion: 2.30.0
           # Specify the script here
           inlineScript: |
+            az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
+            ls
+            pwd
             az account show
             az ad sp list --all --show-mine
-            pwd
-            ls
             echo end from CLI action
-
-
-
-      # - name: Azure CLI Action
-      #   uses: Azure/cli@v1
-      #   with:
-      #     # Azure CLI version to be used to execute the script. If not provided, latest version is used
-      #     azcliversion: 2.30.0
-      #     # Specify the script here
-      #     inlineScript: |
-      #       az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
-      #       ls
-      #       pwd
-      #       az account show
-
-
-
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
