@@ -6,3 +6,4 @@ directory/
 /avd-azure-image-builder/config
 /terraform-service-principal-role
 /test.sh
+/config
