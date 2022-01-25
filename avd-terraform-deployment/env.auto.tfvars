@@ -39,7 +39,7 @@ prefix    = "avd-test"
 avd_users = [
 #  "demouser@M365x389859.onmicrosoft.com",
 #  "admin@M365x389859.onmicrosoft.com",
-  "user2@M365x389859.onmicrosoft.com",
+#  "user2@M365x389859.onmicrosoft.com",
 #  "user-terraform@M365x389859.onmicrosoft.com"
 ]
 
