@@ -42,14 +42,14 @@
 #       with:
 #         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-name: 'Terraform'
+name: 'Terraform AVD deployment'
 
 on:
   push:
     branches:
     - main
     paths:
-    - avd-terraform-deployment-/**
+    - avd-terraform-deployment/**
   pull_request:
 
 jobs:
