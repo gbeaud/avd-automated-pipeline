@@ -1,5 +1,5 @@
 #Create a service principal
-az ad sp create-for-rbac --name "sp-github-actions-azure-devops-01" --role owner `
+az ad sp create-for-rbac --name "sp-terraform-02" --role owner `
     --scopes /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f `
     --sdk-auth
 

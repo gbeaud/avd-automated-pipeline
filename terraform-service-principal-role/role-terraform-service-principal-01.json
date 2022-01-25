@@ -1,7 +1,7 @@
 {
   "Name": "role-terraform-service-principal-01",
   "IsCustom": true,
-  "Description": "Ad-hoc role for terraform",
+  "Description": "Role for terraform",
   "Actions": [
 	"Microsoft.Storage/storageAccounts/blobServices/containers/read",
   "Microsoft.Authorization/roleAssignments/write",
