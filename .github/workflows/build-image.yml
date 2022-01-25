@@ -8,6 +8,8 @@ on:
   push:
     branches:
     - main
+    paths:
+    - avd-azure-image-builder/**
   pull_request:
     branches: [ main ]
 
