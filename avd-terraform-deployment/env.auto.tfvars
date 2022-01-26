@@ -1,6 +1,6 @@
 #This file contains ENVIRONMENT-SPECIFIC variables. In the variables.tf, we can specify static/generic values, while in this env.tfvars file, we will specify the concrete values for a specific deployment.
 
-#The variables defined in this file OVERRIDE the ones in variables.tf 
+#The variables defined in this file OVERRIDE the ones in variables.tf
 
 # Basics
 deploy_location = "west europe"

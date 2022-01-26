@@ -12,6 +12,7 @@ on:
 jobs:
   terraform:
     name: 'Terraform'
+    # Using a service principal to access Azure
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
