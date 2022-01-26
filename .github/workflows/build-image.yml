@@ -10,6 +10,7 @@ on:
     - main
     paths:
     - avd-azure-image-builder/**
+    - .github/workflows/build-image.yml
   pull_request:
     branches: [ main ]
 
