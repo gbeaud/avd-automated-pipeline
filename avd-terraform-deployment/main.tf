@@ -1,3 +1,19 @@
+# Trying this to solve state error
+provider "azurerm" {
+  subscription_id = "d351604a-5f79-488d-a73e-666707f38f1f"
+  features {}
+}
+
+# Trying this to solve state error
+terraform {
+  backend "azurerm" {
+    rg_name = ""
+    #storage_account_name = "" 
+    #container_name       = "" 
+    #key                  = ""  
+  }
+}
+
 # Create AVD Resource Group
 resource "azurerm_resource_group" "rg" {
   name     = var.rg_name
