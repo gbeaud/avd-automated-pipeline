@@ -1,18 +1,6 @@
 # Trying this to solve state error
-provider "azurerm" {
-  subscription_id = "d351604a-5f79-488d-a73e-666707f38f1f"
-  features {}
-}
+terraform import azurerm_resource_group.rg /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-githubactions-westeu-test-01
 
-# Trying this to solve state error
-terraform {
-  backend "azurerm" {
-    rg_name = ""
-    #storage_account_name = "" 
-    #container_name       = "" 
-    #key                  = ""  
-  }
-}
 
 # Create AVD Resource Group
 resource "azurerm_resource_group" "rg" {
