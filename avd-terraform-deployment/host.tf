@@ -1,7 +1,7 @@
 locals {
-  #registration_token = " "
+  registration_token = " "
   # This command creates an error due to a bug in terraform's  registry.terraform.io/hashicorp/azurerm v2.92.0. A workaround is to paste the token in static, but needs to be changed later when the issue is fixed and terraform is updated.
-  registration_token = azurerm_virtual_desktop_host_pool.hostpool.registration_info[0].token
+  #registration_token = azurerm_virtual_desktop_host_pool.hostpool.registration_info[0].token
 }
 
 resource "random_string" "AVD_local_password" {
