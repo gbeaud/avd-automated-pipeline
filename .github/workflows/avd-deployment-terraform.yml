@@ -53,12 +53,23 @@ jobs:
     #     tf_actions_working_dir: "./avd-terraform-deployment"
     
     # Trying to import the state - delete the below block if it generates an error
-    - name: Terraform Import
-      uses: hashicorp/terraform-github-actions@master
+    # - name: Terraform Import
+    #   uses: hashicorp/terraform-github-actions@master
+    #   with:
+    #     tf_actions_version: 0.14.8
+    #     tf_actions_subcommand: 'import azurerm_resource_group.rg'
+    #     tf_actions_working_dir: "./avd-terraform-deployment"
+
+    - name: Terraform Import via Azure CLI
+      uses: Azure/cli@v1
       with:
-        tf_actions_version: 0.14.8
-        tf_actions_subcommand: 'import azurerm_resource_group.rg'
-        tf_actions_working_dir: "./avd-terraform-deployment"
+        # Azure CLI version to be used to execute the script. If not provided, latest version is used
+        azcliversion: 2.30.0
+        # Specify the script here
+        # $GITHUB_WORKSPACE = variable containing the root github repo
+        inlineScript: |
+          terraform import azurerm_resource_group.rg /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-githubactions-westeu-test-01
+
 
     - name: Terraform Plan
       uses: hashicorp/terraform-github-actions@master
