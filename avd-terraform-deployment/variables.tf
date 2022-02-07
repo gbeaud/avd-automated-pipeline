@@ -1,6 +1,6 @@
 variable "rg_name" {
   type        = string
-  default     = "AVD-TF"
+  default     = "rg-avd-terraform-githubactions-westeu-test-${var.deployment_number}"
   description = "Name of the Resource group in which to deploy these resources"
 }
 
@@ -79,6 +79,7 @@ variable "prefix" {
 
 variable "deployment_number" {
   type        = string
+  default = "01"
   description = "Deployment number in case of serialized deployments for testing purpose"
 }
 
