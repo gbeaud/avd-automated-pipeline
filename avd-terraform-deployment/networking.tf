@@ -53,7 +53,7 @@ resource "azurerm_virtual_network_peering" "peer1" {
 }
 
 resource "azurerm_virtual_network_peering" "peer2" {
-  name                      = "peer_ad_avd"
+  name                      = "peer_ad_avd-${var.deployment_number}"
   resource_group_name       = var.ad_rg
   virtual_network_name      = var.ad_vnet
   remote_virtual_network_id = azurerm_virtual_network.vnet.id
@@ -74,7 +74,7 @@ resource "azurerm_virtual_network_peering" "peer_hub1" {
 }
 
 resource "azurerm_virtual_network_peering" "peer_hub2" {
-  name                      = "peer_hub_avd"
+  name                      = "peer_hub_avd-${var.deployment_number}"
   resource_group_name       = var.hub_rg
   virtual_network_name      = var.hub_vnet
   remote_virtual_network_id = azurerm_virtual_network.vnet.id
