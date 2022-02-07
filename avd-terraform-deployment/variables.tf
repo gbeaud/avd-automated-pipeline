@@ -77,6 +77,11 @@ variable "prefix" {
   description = "Prefix of the name of the AVD machine(s)"
 }
 
+variable "deployment_number" {
+  type        = string
+  description = "Deployment number in case of serialized deployments for testing purpose"
+}
+
 variable "domain_name" {
   type        = string
   description = "Name of the domain to join"
