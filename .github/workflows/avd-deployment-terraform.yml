@@ -58,7 +58,7 @@ jobs:
       with:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'import'
-        tf_actions_comment: 'azurerm_resource_group.rg /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-githubactions-westeu-test-02'
+        #tf_actions_comment: 'azurerm_resource_group.rg /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-githubactions-westeu-test-02'
         tf_actions_working_dir: "./avd-terraform-deployment"
 
     # - name: Terraform Import via Azure CLI
