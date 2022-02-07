@@ -61,20 +61,20 @@ jobs:
     #     tf_actions_comment: 'azurerm_resource_group.rg /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-githubactions-westeu-test-02'
     #     tf_actions_working_dir: "./avd-terraform-deployment"
 
-    - name: Terraform Import via Azure CLI
-      uses: Azure/cli@v1
-      with:
-        # Azure CLI version to be used to execute the script. If not provided, latest version is used
-        azcliversion: 2.30.0
-        # Specify the script here
-        # $GITHUB_WORKSPACE = variable containing the root github repo
-        inlineScript: |
-          cd ./avd-terraform-deployment
-          echo "result of pwd:"
-          pwd
-          echo "result of ls -a:"
-          ls -a
-          terraform import azurerm_resource_group.rg /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-githubactions-westeu-test-02
+    # - name: Terraform Import via Azure CLI
+    #   uses: Azure/cli@v1
+    #   with:
+    #     # Azure CLI version to be used to execute the script. If not provided, latest version is used
+    #     azcliversion: 2.30.0
+    #     # Specify the script here
+    #     # $GITHUB_WORKSPACE = variable containing the root github repo
+    #     inlineScript: |
+    #       cd ./avd-terraform-deployment
+    #       echo "result of pwd:"
+    #       pwd
+    #       echo "result of ls -a:"
+    #       ls -a
+    #       terraform import azurerm_resource_group.rg /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-githubactions-westeu-test-02
 
 
     - name: Terraform Plan
