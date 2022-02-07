@@ -4,7 +4,7 @@
 
 # Basics
 deploy_location = "west europe"
-rg_name         = "rg-avd-terraform-githubactions-westeu-test-01"
+rg_name         = "rg-avd-terraform-githubactions-westeu-test-02"
 
 #Active Directory variables
 ad_rg          = "rg-domain-controler-westeurope"
