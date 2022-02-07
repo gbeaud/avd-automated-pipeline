@@ -72,8 +72,8 @@ jobs:
           cd ./avd-terraform-deployment
           echo "result of pwd:"
           pwd
-          echo "result of ls:"
-          ls
+          echo "result of ls -a:"
+          ls -a
           terraform import azurerm_resource_group.rg /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-githubactions-westeu-test-02
 
 
