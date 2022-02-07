@@ -2,12 +2,9 @@
 
 #The variables defined in this file OVERRIDE the ones in variables.tf
 
-#Variable added to speed up serialized deployments for testing purpose. Can be set to 0 or any other value if performing only one deployment.
-deployment_number = "07"
-
 # Basics
 deploy_location = "west europe"
-#rg_name         = "rg-avd-terraform-githubactions-westeu-test-04"
+rg_name         = "rg-avd-terraform-githubactions-westeu-test-05"
 
 #Active Directory variables
 ad_rg          = "rg-domain-controler-westeurope"

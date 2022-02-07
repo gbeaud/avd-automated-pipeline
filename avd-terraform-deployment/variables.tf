@@ -1,6 +1,6 @@
 variable "rg_name" {
   type        = string
-  default     = "rg-avd-terraform-githubactions-westeu-test-${var.deployment_number}"
+  default     = "rg-avd-terraform-githubactions-westeu-test-01"
   description = "Name of the Resource group in which to deploy these resources"
 }
 
@@ -75,12 +75,6 @@ variable "rdsh_count" {
 variable "prefix" {
   type        = string
   description = "Prefix of the name of the AVD machine(s)"
-}
-
-variable "deployment_number" {
-  type        = string
-  default = "01"
-  description = "Deployment number in case of serialized deployments for testing purpose"
 }
 
 variable "domain_name" {

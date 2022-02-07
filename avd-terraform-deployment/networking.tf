@@ -74,7 +74,7 @@ resource "azurerm_virtual_network_peering" "peer_hub1" {
 }
 
 resource "azurerm_virtual_network_peering" "peer_hub2" {
-  name                      = "peer_hub_avd-${var.deployment_number}"
+  name                      = "peer_hub_avd-${formatdate("YYYYMMMDD-hhmmss", timestamp())}"
   resource_group_name       = var.hub_rg
   virtual_network_name      = var.hub_vnet
   remote_virtual_network_id = azurerm_virtual_network.vnet.id
