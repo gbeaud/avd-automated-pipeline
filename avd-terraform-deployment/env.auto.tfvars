@@ -7,7 +7,7 @@ deployment_number = "06"
 
 # Basics
 deploy_location = "west europe"
-rg_name         = "rg-avd-terraform-githubactions-westeu-test-${var.deployment_number}"
+rg_name         = "rg-avd-terraform-githubactions-westeu-test-04"
 
 #Active Directory variables
 ad_rg          = "rg-domain-controler-westeurope"
