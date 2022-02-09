@@ -90,11 +90,6 @@ echo Template JSON file was created
 
 ######################## Create the image template
 
-# Ensures there is no previous template with the same name
-#az image builder delete \
-#--name $templateName \
-#--resource-group $imageResourceGroup
-
 # Waits for the deletion to be complete before proceeding
 #az image builder wait --deleted --name $templateName --resource-group $imageResourceGroup
 
@@ -120,3 +115,17 @@ az resource invoke-action \
 --resource-type Microsoft.VirtualMachineImages/imageTemplates \
 --name $templateName \
 --action Run
+
+######################## Delete the image template (optional)
+
+# When creating an image template, in the background, image builder also creates a staging resource group in your subscription. This resource group is used for the image build. It's in the format: IT_<DestinationResourceGroup>_<TemplateName>.
+
+# Do not delete the staging resource group directly. Delete the image template artifact, this will cause the staging resource group to be deleted.
+
+# https://docs.microsoft.com/en-us/azure/virtual-machines/windows/image-builder-powershell
+
+# To keep a versioning/history of image templates, remove the below command.
+
+az image builder delete \
+--name $templateName \
+--resource-group $imageResourceGroup
