@@ -46,10 +46,19 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
     storage_account_type = "Standard_LRS"
   }
 
+# Windows 10
+  # source_image_reference {
+  #   publisher = "MicrosoftWindowsDesktop"
+  #   offer     = "Windows-10"
+  #   sku       = "20h2-evd"
+  #   version   = "latest"
+  # }
+
+# Windows 11
   source_image_reference {
     publisher = "MicrosoftWindowsDesktop"
-    offer     = "Windows-10"
-    sku       = "20h2-evd"
+    offer     = "office-365"
+    sku       = "win11-21h2-avd-m365"
     version   = "latest"
   }
 
