@@ -30,7 +30,7 @@ imageResourceGroup=rg-imagebuilder-weu-2
 location=westeurope
 # Additional region to replicate the image to (optional)
 #additionalregion=eastus
-# Run output name
+# Run output name 
 runOutputName=aibWindows
 # Name of the new image template
 # To keep a version control over templates, it can be named with date and time
