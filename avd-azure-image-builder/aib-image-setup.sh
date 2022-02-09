@@ -33,7 +33,9 @@ location=westeurope
 # Run output name
 runOutputName=aibWindows
 # Name of the new image template
-templateName=image-template-$( date '+%F-%H%M%S' )
+# To keep a version control over templates, it can be named with date and time
+# templateName=image-template-$( date '+%F-%H%M%S' )
+templateName=image-template-win11-multi-session-latest
 # Name of the image to be created
 imageName=img-win11-multi-session-latest
 
@@ -90,6 +92,11 @@ echo Template JSON file was created
 
 ######################## Create the image template
 
+# Deletes the previous template
+az image builder delete \
+--name $templateName \
+--resource-group $imageResourceGroup
+
 # Waits for the deletion to be complete before proceeding
 #az image builder wait --deleted --name $templateName --resource-group $imageResourceGroup
 
@@ -126,6 +133,6 @@ az resource invoke-action \
 
 # To keep a versioning/history of image templates, remove the below command.
 
-az image builder delete \
---name $templateName \
---resource-group $imageResourceGroup
+# az image builder delete \
+# --name $templateName \
+# --resource-group $imageResourceGroup
