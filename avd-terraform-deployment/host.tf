@@ -1,7 +1,12 @@
 locals {
   #registration_token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IkZDMTBFOUQzNUQ4MEFCMjQyMTM2MTJBMDIwQjA3Q0U2Q0UxODRGMDAiLCJ0eXAiOiJKV1QifQ.eyJSZWdpc3RyYXRpb25JZCI6IjI3ZGZhMTkxLTkzNzgtNDc4ZC04ZjgwLWU5NmExYmU1MTU0MCIsIkJyb2tlclVyaSI6Imh0dHBzOi8vcmRicm9rZXItZy1ldS1yMC53dmQubWljcm9zb2Z0LmNvbS8iLCJEaWFnbm9zdGljc1VyaSI6Imh0dHBzOi8vcmRkaWFnbm9zdGljcy1nLWV1LXIwLnd2ZC5taWNyb3NvZnQuY29tLyIsIkVuZHBvaW50UG9vbElkIjoiM2IyNWI1MGYtYTYxNi00Zjc3LTgxYWMtMmNmNzY0ZjNlYTQ3IiwiR2xvYmFsQnJva2VyVXJpIjoiaHR0cHM6Ly9yZGJyb2tlci53dmQubWljcm9zb2Z0LmNvbS8iLCJHZW9ncmFwaHkiOiJFVSIsIkdsb2JhbEJyb2tlclJlc291cmNlSWRVcmkiOiJodHRwczovL3JkYnJva2VyLnd2ZC5taWNyb3NvZnQuY29tLyIsIkJyb2tlclJlc291cmNlSWRVcmkiOiJodHRwczovL3JkYnJva2VyLWctZXUtcjAud3ZkLm1pY3Jvc29mdC5jb20vIiwiRGlhZ25vc3RpY3NSZXNvdXJjZUlkVXJpIjoiaHR0cHM6Ly9yZGRpYWdub3N0aWNzLWctZXUtcjAud3ZkLm1pY3Jvc29mdC5jb20vIiwibmJmIjoxNjQ0MjQxMzQ3LCJleHAiOjE2NDY4MzMzMzUsImlzcyI6IlJESW5mcmFUb2tlbk1hbmFnZXIiLCJhdWQiOiJSRG1pIn0.Zo2A-X-dKhuXSPcTCOMLr0KEWLmY0mSQLEmApfvtl62IMkFo9WwQ4JUY0B0lWTEHZi5XjhK8ZP3nVbOfrawU7TBUhBQdAVhHcToZebPygVn2GV35PJKH15p6QQWgoP-oLdOcifSZ_XZwqFJPh_98iMLWxE8eP01iuN4Cvqs-Rgus1yeMPvM6kCPPlskviWJdepfNEAAZcAbbxnTNcyoF0HjjpdHlNd3LuNUJOeuYPO6mLq9Orn874JwIrt7qoRf5OEemiLKg6gOtesFoiXRcVGcElvFsfUexSpcyrFO_6HscARkxMZ-o3i8nkBu680lwMn_JijrGmpdc3JkMi2LNIQ"
   # This command creates an error due to a bug in terraform's  registry.terraform.io/hashicorp/azurerm v2.92.0. A workaround is to paste the token in static, but needs to be changed later when the issue is fixed and terraform is updated.
-  registration_token = azurerm_virtual_desktop_host_pool.hostpool.registration_info[0].token
+  
+  # This was the original code
+  # registration_token = azurerm_virtual_desktop_host_pool.hostpool.registration_info[0].token
+  
+  # New tentative to solve the issue
+  registration_token = azurerm_virtual_desktop_host_pool.hostpool.registration_token
 }
 
 resource "random_string" "AVD_local_password" {
@@ -54,7 +59,7 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
   #   version   = "latest"
   # }
 
-# Windows 11
+# Windows 11 multi-session
   source_image_reference {
     publisher = "MicrosoftWindowsDesktop"
     offer     = "office-365"
@@ -134,4 +139,29 @@ PROTECTED_SETTINGS
     azurerm_virtual_machine_extension.domain_join,
     azurerm_virtual_desktop_host_pool.hostpool
   ]
+}
+
+
+
+
+# Testing custom VMs creation - remove this whole block later
+
+resource "azurerm_virtual_machine" "vm_custom_image" {
+  name                  = "vm-from-custom-image-test-01"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
+  location              = var.deploy_location
+  size                  = var.vm_size
+  network_interface_ids = ["${azurerm_network_interface.avd_vm_nic.*.id[count.index]}"]
+  provision_vm_agent    = true
+  admin_username        = var.local_admin_username
+  admin_password        = var.local_admin_password
+
+  storage_os_disk {
+    name          = "custom-osdisk1"
+    image_uri     = "https://971dbcdtczp45skg06qkbj1r.blob.core.windows.net/vhds/a893177e-3799-49a6-9bd2-2182e09aaf81.vhd"
+    vhd_uri       = "https://971dbcdtczp45skg06qkbj1r.blob.core.windows.net/vhds/a893177e-3799-49a6-9bd2-2182e09aaf81.vhd"
+    os_type       = "windows"
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+  }
 }
