@@ -35,7 +35,7 @@ runOutputName=aibWindows
 # Name of the new image template
 # To keep a version control over templates, it can be named with date and time
 # templateName=image-template-$( date '+%F-%H%M%S' )
-templateName=image-template-win11-multi-session-latest
+templateName=it-win11-multi-session-latest
 # Name of the image to be created
 imageName=img-win11-multi-session-latest
 
