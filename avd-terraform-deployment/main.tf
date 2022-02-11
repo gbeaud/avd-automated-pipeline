@@ -38,6 +38,7 @@ resource "azurerm_virtual_desktop_host_pool" "hostpool" {
 # Creates a resource for the registration token
 resource "azurerm_virtual_desktop_host_pool_registration_info" "registration_info" {
   hostpool_id     = azurerm_virtual_desktop_host_pool.hostpool.id
+  # Expiration date must be within 30 days
   expiration_date = "2022-03-03T23:40:52Z"
 }
 
