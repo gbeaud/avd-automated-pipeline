@@ -39,8 +39,8 @@ prefix    = "avd-test"
 avd_users = [
  "demouser@M365x389859.onmicrosoft.com",
  "admin@M365x389859.onmicrosoft.com",
- "user2@M365x389859.onmicrosoft.com",
- "user-terraform@M365x389859.onmicrosoft.com"
+ "user2@M365x389859.onmicrosoft.com"
+ #"user-terraform@M365x389859.onmicrosoft.com"
 ]
 
 #Credentials used to domain join the VMs (the user should be part of the "Domain Admins" group in AD, otherwise the number of VMs allowed to be domain joined is 10)
