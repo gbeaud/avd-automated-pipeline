@@ -25,7 +25,8 @@ az provider register -n Microsoft.Network
 ############ Variables definitions
 
 # Define the resource group's name
-imageResourceGroup=rg-imagebuilder-test-westeu-01
+# imageResourceGroup=rg-imagebuilder-test-westeu-01
+imageResourceGroup=rg-imagebuilder-weu-2
 # Datacenter location
 location=westeurope
 # Additional region to replicate the image to (optional)
@@ -37,7 +38,7 @@ runOutputName=aibWindows
 # templateName=image-template-$( date '+%F-%H%M%S' )
 templateName=it-win11-multi-session-latest
 # Name of the image to be created
-imageName=img-win11-multi-session-latest
+imageName=img-win11-multi-session-latest-2
 
 subscriptionID=$(az account show --query id --output tsv)
 
@@ -79,14 +80,14 @@ az role assignment create \
 
 ####################### Download the image configuration template example (here you can put your own GitHub link), and modify the .json file with your own parameters defined above
 
-curl https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-azure-image-builder/StandardTemplateWin.json -o helloImageTemplateWin.json
+curl https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-azure-image-builder/StandardTemplateWin.json -o temporaryImageTemplateWin.json
 
-sed -i -e "s/<subscriptionID>/$subscriptionID/g" helloImageTemplateWin.json
-sed -i -e "s/<rgName>/$imageResourceGroup/g" helloImageTemplateWin.json
-sed -i -e "s/<region>/$location/g" helloImageTemplateWin.json
-sed -i -e "s/<imageName>/$imageName/g" helloImageTemplateWin.json
-sed -i -e "s/<runOutputName>/$runOutputName/g" helloImageTemplateWin.json
-sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" helloImageTemplateWin.json
+sed -i -e "s/<subscriptionID>/$subscriptionID/g" temporaryImageTemplateWin.json
+sed -i -e "s/<rgName>/$imageResourceGroup/g" temporaryImageTemplateWin.json
+sed -i -e "s/<region>/$location/g" temporaryImageTemplateWin.json
+sed -i -e "s/<imageName>/$imageName/g" temporaryImageTemplateWin.json
+sed -i -e "s/<runOutputName>/$runOutputName/g" temporaryImageTemplateWin.json
+sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" temporaryImageTemplateWin.json
 
 echo Template JSON file was created
 
@@ -101,11 +102,11 @@ az image builder delete \
 #az image builder wait --deleted --name $templateName --resource-group $imageResourceGroup
 
 # Submit the image configuration to the VM Image Builder service
-# WARNING: there may be a line break at the bottom of the JSON file causing a "LinkedInvalidPropertyId" error. Make sure the file is well formatted! The standard file should not be modified; ref to the original file: https://raw.githubusercontent.com/azure/azvmimagebuilder/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/helloImageTemplateWin.json
+# WARNING: there may be a line break at the bottom of the JSON file causing a "LinkedInvalidPropertyId" error. Make sure the file is well formatted! The standard file should not be modified; ref to the original file: https://raw.githubusercontent.com/azure/azvmimagebuilder/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/temporaryImageTemplateWin.json
 az resource create \
 --resource-group $imageResourceGroup \
 --resource-type Microsoft.VirtualMachineImages/imageTemplates \
---properties @helloImageTemplateWin.json \
+--properties @temporaryImageTemplateWin.json \
 --is-full-object \
 --name $templateName
 
@@ -133,6 +134,6 @@ az resource invoke-action \
 
 # To keep a versioning/history of image templates, remove the below command.
 
-# az image builder delete \
-# --name $templateName \
-# --resource-group $imageResourceGroup
+az image builder delete \
+--name $templateName \
+--resource-group $imageResourceGroup
