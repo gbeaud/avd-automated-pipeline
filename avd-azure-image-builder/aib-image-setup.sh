@@ -25,8 +25,8 @@ az provider register -n Microsoft.Network
 ############ Variables definitions
 
 # Define the resource group's name
-# imageResourceGroup=rg-imagebuilder-test-westeu-01
-imageResourceGroup=rg-imagebuilder-weu-2
+imageResourceGroup=rg-imagebuilder-test-westeu-01
+# imageResourceGroup=rg-imagebuilder-weu-2
 # Datacenter location
 location=westeurope
 # Additional region to replicate the image to (optional)
@@ -38,7 +38,8 @@ runOutputName=aibWindows
 # templateName=image-template-$( date '+%F-%H%M%S' )
 templateName=it-win11-multi-session-latest
 # Name of the image to be created
-imageName=img-win11-multi-session-latest-2
+# imageName=img-win11-multi-session-latest-2
+imageName=img-win11-multi-session-latest
 
 subscriptionID=$(az account show --query id --output tsv)
 
