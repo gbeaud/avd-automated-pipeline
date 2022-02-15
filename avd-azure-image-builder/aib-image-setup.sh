@@ -49,7 +49,7 @@ az group create -n $imageResourceGroup -l $location
 ############# Create user-assigned managed identity and grant permissions
 
 # Create user assigned identity for image builder to access the storage account where the script is located
-#identityName=aibBuiUserId$(date +'%s')
+#identityName=aibBuiUserId$(date +'%s') 
 identityName=aibBuiUserId
 az identity create -g $imageResourceGroup -n $identityName
 
