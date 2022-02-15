@@ -125,7 +125,7 @@ az resource invoke-action \
 --name $templateName \
 --action Run
 
-######################## Delete the image template (optional)
+######################## Delete the image template (optional) 
 
 # When creating an image template, in the background, image builder also creates a staging resource group in your subscription. This resource group is used for the image build. It's in the format: IT_<DestinationResourceGroup>_<TemplateName>.
 
