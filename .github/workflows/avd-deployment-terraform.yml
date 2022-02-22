@@ -74,3 +74,5 @@ jobs:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'apply'
         tf_actions_working_dir: "./avd-terraform-deployment"
+        #args places the arguments at the very end of the command
+        args: '-var="local_admin_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}" -var="domain_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}"'

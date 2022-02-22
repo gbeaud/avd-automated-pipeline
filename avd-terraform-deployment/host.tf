@@ -40,7 +40,8 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
   resource_group_name   = var.rg_name
   location              = var.deploy_location
   size                  = var.vm_size
-  network_interface_ids = ["${azurerm_network_interface.avd_vm_nic.*.id[count.index]}"]
+  #network_interface_ids = ["${azurerm_network_interface.avd_vm_nic.*.id[count.index]}"]
+  network_interface_ids = ["azurerm_network_interface.avd_vm_nic.*.id[count.index]"]
   provision_vm_agent    = true
   admin_username        = var.local_admin_username
   admin_password        = var.local_admin_password
