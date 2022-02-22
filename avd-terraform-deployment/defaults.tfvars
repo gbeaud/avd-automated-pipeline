@@ -1,5 +1,5 @@
 # Customized the sample values below for your environment and either rename to terraform.tfvars or env.auto.tfvars
-
+ 
 # The present file is not processed at runtime, it is only an example for your reference. The file that is actually processed is called terraform.tfvars or env.auto.tfvars.
 
 deploy_location      = "west europe"
