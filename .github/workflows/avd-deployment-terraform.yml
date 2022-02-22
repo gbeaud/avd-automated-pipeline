@@ -43,8 +43,10 @@ jobs:
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: 0.14.8
-        tf_actions_subcommand: 'fmt -check'
+        #tf_actions_subcommand: 'fmt -check'
+        tf_actions_subcommand: 'fmt'
         tf_actions_working_dir: "./avd-terraform-deployment"
+        args: '-check'
 
     - name: Terraform Validate
       uses: hashicorp/terraform-github-actions@master
