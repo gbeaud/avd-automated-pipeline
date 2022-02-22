@@ -25,7 +25,7 @@ subnet_range = ["10.1.4.0/24"]
 
 #Hosts
 #Number of hosts to deploy
-rdsh_count = 2
+rdsh_count = 1
 
 #VM image
 # image_name = "img-win11-multi-session-latest"
@@ -47,7 +47,7 @@ avd_users = [
 
 #Credentials used to domain join the VMs (the user should be part of the "Domain Admins" group in AD, otherwise the number of VMs allowed to be domain joined is 10)
 domain_user_upn      = "domainadmin"
-domain_password      = "Vm-password-123"
+#domain_password      = "Vm-password-123"
 #Credentials for local admin on the computer
 local_admin_username = "demouser"
-local_admin_password = "Vm-password-123"
+#local_admin_password = "Vm-password-123"
