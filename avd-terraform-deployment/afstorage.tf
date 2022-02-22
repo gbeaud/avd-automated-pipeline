@@ -24,7 +24,7 @@ resource "azurerm_storage_account" "storage" {
   account_kind             = "FileStorage"
 
   # Adding dependency to fix "ResourceGroupNotFound" error
-  depends_on           = [azurerm_resource_group.rg]
+  depends_on = [azurerm_resource_group.rg]
 }
 
 resource "azurerm_storage_share" "FSShare" {

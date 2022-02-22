@@ -39,12 +39,12 @@ jobs:
         tf_actions_subcommand: 'init'
         tf_actions_working_dir: "./avd-terraform-deployment"
   
-    # - name: Terraform Format
-    #   uses: hashicorp/terraform-github-actions@master
-    #   with:
-    #     tf_actions_version: 0.14.8
-    #     tf_actions_subcommand: 'fmt -check'
-    #     tf_actions_working_dir: "./avd-terraform-deployment"
+    - name: Terraform Format
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.14.8
+        tf_actions_subcommand: 'fmt -check'
+        tf_actions_working_dir: "./avd-terraform-deployment"
 
     - name: Terraform Validate
       uses: hashicorp/terraform-github-actions@master
@@ -60,12 +60,7 @@ jobs:
         tf_actions_subcommand: 'plan'
         tf_actions_working_dir: "./avd-terraform-deployment"
         tf_actions_comment: true
-        #args places the arguments at the very end of the command
         args: '-var="local_admin_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}" -var="domain_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}"'
-      #env places the environment variables before the args
-      # env:
-      #   local_admin_password: ${{ secrets.AVD_LOCAL_USER_PASSWORD }}
-      #   domain_password: ${{ secrets.AVD_DOMAIN_ADMIN_PASSWORD }}
  
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -74,5 +69,4 @@ jobs:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'apply'
         tf_actions_working_dir: "./avd-terraform-deployment"
-        #args places the arguments at the very end of the command
         args: '-var="local_admin_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}" -var="domain_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}"'

@@ -1,5 +1,4 @@
 locals {
-  # Solution to a bug in terraform'sregistry.terraform.io/hashicorp/azurerm v2.92.0: https://github.com/hashicorp/terraform-provider-azurerm/pull/14134#issuecomment-1035467548
   registration_token = azurerm_virtual_desktop_host_pool_registration_info.registration_info.token
 }
 
@@ -41,10 +40,9 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
   location              = var.deploy_location
   size                  = var.vm_size
   network_interface_ids = ["${azurerm_network_interface.avd_vm_nic.*.id[count.index]}"]
-  #network_interface_ids = ["azurerm_network_interface.avd_vm_nic.*.id[count.index]"]
-  provision_vm_agent    = true
-  admin_username        = var.local_admin_username
-  admin_password        = var.local_admin_password
+  provision_vm_agent = true
+  admin_username     = var.local_admin_username
+  admin_password     = var.local_admin_password
 
   os_disk {
     name                 = "${lower(var.prefix)}-${count.index + 1}"
@@ -68,7 +66,7 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
   #   version   = "latest"
   # }
 
-  source_image_id = "${data.azurerm_image.image.id}"
+  source_image_id = data.azurerm_image.image.id
 
   depends_on = [
     azurerm_resource_group.rg,
@@ -143,28 +141,3 @@ PROTECTED_SETTINGS
     azurerm_virtual_desktop_host_pool.hostpool
   ]
 }
-
-
-
-
-# Testing custom VMs creation - remove this whole block later
-
-# resource "azurerm_virtual_machine" "vm_custom_image" {
-#   name                  = "vm-from-custom-image-test-01"
-#   resource_group_name   = "${azurerm_resource_group.rg.name}"
-#   location              = var.deploy_location
-#   #size                  = var.vm_size
-#   #network_interface_ids = ["${azurerm_network_interface.avd_vm_nic.*.id[count.index]}"]
-#   provision_vm_agent    = true
-#   admin_username        = var.local_admin_username
-#   admin_password        = var.local_admin_password
-
-#   storage_os_disk {
-#     name          = "custom-osdisk1"
-#     image_uri     = "https://971dbcdtczp45skg06qkbj1r.blob.core.windows.net/vhds/a893177e-3799-49a6-9bd2-2182e09aaf81.vhd"
-#     vhd_uri       = "https://971dbcdtczp45skg06qkbj1r.blob.core.windows.net/vhds/a893177e-3799-49a6-9bd2-2182e09aaf81.vhd"
-#     os_type       = "windows"
-#     caching       = "ReadWrite"
-#     create_option = "FromImage"
-#   }
-# }
