@@ -19,9 +19,6 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
-      # Variables used inside Terraform code
-      local_admin_password: ${{ secrets.AVD_LOCAL_USER_PASSWORD }}
-      domain_password: ${{ secrets.AVD_DOMAIN_ADMIN_PASSWORD }}
     runs-on: ubuntu-latest
     environment: test
  
@@ -66,9 +63,9 @@ jobs:
         #args places the arguments at the very end of the command
         #args: '-var="env=dev"'
       #env places the environment variables before the args
-      # env:
-      #   local_admin_password: ${{ secrets.GITHUB_TOKEN }}
-      #   domain_password: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        local_admin_password: ${{ secrets.AVD_LOCAL_USER_PASSWORD }}
+        domain_password: ${{ secrets.AVD_DOMAIN_ADMIN_PASSWORD }}
  
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
