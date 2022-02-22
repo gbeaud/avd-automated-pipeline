@@ -50,8 +50,3 @@ avd_users = [
 domain_user_upn      = "domainadmin"
 #Credentials for local admin on the computer
 local_admin_username = "demouser"
-
-# Reference to the storage account supposed to store the Terraform state file
-tf_state_resource_group_name  = "rg-management-prod-westeu-01"
-tf_state_storage_account_name = "saterraformstate01"
-tf_state_container_name       = "terraform-state-01"
