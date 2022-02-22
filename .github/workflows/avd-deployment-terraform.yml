@@ -61,11 +61,12 @@ jobs:
         tf_actions_working_dir: "./avd-terraform-deployment"
         tf_actions_comment: true
         #args places the arguments at the very end of the command
-        #args: '-var="env=dev"'
+        args: '-var="local_admin_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}"'
+        args: '-var="domain_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}"'
       #env places the environment variables before the args
-      env:
-        local_admin_password: ${{ secrets.AVD_LOCAL_USER_PASSWORD }}
-        domain_password: ${{ secrets.AVD_DOMAIN_ADMIN_PASSWORD }}
+      # env:
+      #   local_admin_password: ${{ secrets.AVD_LOCAL_USER_PASSWORD }}
+      #   domain_password: ${{ secrets.AVD_DOMAIN_ADMIN_PASSWORD }}
  
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
