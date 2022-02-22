@@ -14,10 +14,14 @@ jobs:
     name: 'Terraform'
     # Using a service principal to access Azure
     env:
+      # Variables used in GitHub Actions workflow
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+      # Variables used inside Terraform code
+      local_admin_password: ${{ secrets.AVD_LOCAL_USER_PASSWORD }}
+      domain_password: ${{ secrets.AVD_DOMAIN_ADMIN_PASSWORD }}
     runs-on: ubuntu-latest
     environment: test
  
@@ -52,37 +56,19 @@ jobs:
         tf_actions_subcommand: 'validate'
         tf_actions_working_dir: "./avd-terraform-deployment"
     
-    # Trying to import the state; delete the below block if it generates an error 
-    # - name: Terraform Import
-    #   uses: hashicorp/terraform-github-actions@master
-    #   with:
-    #     tf_actions_version: 0.14.8
-    #     tf_actions_subcommand: 'import'
-    #     tf_actions_comment: 'azurerm_resource_group.rg /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-githubactions-westeu-test-02'
-    #     tf_actions_working_dir: "./avd-terraform-deployment"
-
-    # - name: Terraform Import via Azure CLI
-    #   uses: Azure/cli@v1
-    #   with:
-    #     # Azure CLI version to be used to execute the script. If not provided, latest version is used
-    #     azcliversion: 2.30.0
-    #     # Specify the script here
-    #     # $GITHUB_WORKSPACE = variable containing the root github repo
-    #     inlineScript: |
-    #       cd ./avd-terraform-deployment
-    #       echo "result of pwd:"
-    #       pwd
-    #       echo "result of ls -a:"
-    #       ls -a
-    #       terraform import azurerm_resource_group.rg /subscriptions/d351604a-5f79-488d-a73e-666707f38f1f/resourceGroups/rg-avd-terraform-githubactions-westeu-test-02
-
-
     - name: Terraform Plan
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'plan'
         tf_actions_working_dir: "./avd-terraform-deployment"
+        tf_actions_comment: true
+        #args places the arguments at the very end of the command
+        #args: '-var="env=dev"'
+      #env places the environment variables before the args
+      # env:
+      #   local_admin_password: ${{ secrets.GITHUB_TOKEN }}
+      #   domain_password: ${{ secrets.GITHUB_TOKEN }}
  
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'

@@ -1,19 +1,21 @@
 # Bash
 
 steps:
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Azure ARM'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az network nsg create --name nsg-azuredevops-westeu-test-09 --resource-group rg-imagebuilder-weu-2 --location westeurope'
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'Azure ARM'
+      scriptType: 'bash'
+      scriptLocation: 'scriptPath'
+      scriptPath: 'avd-azure-image-builder/aib-image-setup.sh'
 
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Azure ARM'
-    scriptType: 'bash'
-    scriptLocation: 'scriptPath'
-    scriptPath: 'avd-azure-image-builder/aib-image-setup.sh'
+
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'Azure ARM'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'az network nsg create --name nsg-azuredevops-westeu-test-09 --resource-group rg-imagebuilder-weu-2 --location westeurope'
+
 
 #trigger:
 #  branches:

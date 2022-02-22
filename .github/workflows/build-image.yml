@@ -40,4 +40,4 @@ jobs:
             az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
             chmod +x $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
             $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
-            echo end from CLI action
+            echo end of CLI action

@@ -43,3 +43,4 @@ override.tf.json
 
 #Ignore any *.hcl files
 *.hcl
+/avd-terraform-deployment/test.tf
