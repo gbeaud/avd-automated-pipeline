@@ -1,3 +1,8 @@
+Guillaume's notes:
+- To store Terraform's state file in a storage account, you need to create a storage account and give the service principal the right access (follow this tutorial: https://docs.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage?tabs=powershell)
+- The reference to this storage account is in the "backend" block in the "provider.tf" file. To store the state locally, simply remove the "backend" block. (Warning: this will prevent you from deploying from a stateless environment such as GitHub Actions while preserving the state).
+
+
 ## Terraform for Azure Virtual Desktop 
 
 The purpose of this repository is to demonstrate using Terraform to deploy a simple Azure Virtual Desktop environment. For Classic Azure Virtual Desktop click [here](https://github.com/Azure/RDS-Templates/tree/master/wvd-sh/terraform-azurerm-windowsvirtualdesktop).

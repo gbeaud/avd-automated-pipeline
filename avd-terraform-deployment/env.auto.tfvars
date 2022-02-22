@@ -25,9 +25,9 @@ subnet_range = ["10.1.4.0/24"]
 
 #Hosts
 #Number of hosts to deploy
-rdsh_count = 1
+rdsh_count = 2
 
-#VM image
+#Reference to custom VM image
 # image_name = "img-win11-multi-session-latest"
 # image_resource_group = "rg-imagebuilder-test-westeu-01"
 image_name = "img-win11-multi-session-latest-2"
@@ -45,9 +45,13 @@ avd_users = [
  "user2@M365x389859.onmicrosoft.com"
 ]
 
-#Credentials used to domain join the VMs (the user should be part of the "Domain Admins" group in AD, otherwise the number of VMs allowed to be domain joined is 10)
+#Credentials used to domain join the VMs (the domain user should be part of the "Domain Admins" group in AD, otherwise the number of VMs allowed to be domain joined is 10).
+# Passwords are stored on GitHub Secrets but can also be passed when running locally with: terraform plan -out terraform_azure.tfplan -var="domain_password=XYZ" -var="local_admin_password=ABC"
 domain_user_upn      = "domainadmin"
-#domain_password      = "Vm-password-123"
 #Credentials for local admin on the computer
 local_admin_username = "demouser"
-#local_admin_password = "Vm-password-123"
+
+# Reference to the storage account supposed to store the Terraform state file
+tf_state_resource_group_name  = "rg-management-prod-westeu-01"
+tf_state_storage_account_name = "saterraformstate01"
+tf_state_container_name       = "terraform-state-01"

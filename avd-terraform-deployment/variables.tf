@@ -1,7 +1,7 @@
 variable "rg_name" {
   type        = string
   default     = "rg-avd-terraform-githubactions-westeu-test-01"
-  description = "Name of the Resource group in which to deploy these resources"
+  description = "Name of the Resource group in which to deploy the AVD resources"
 }
 
 variable "deploy_location" {
@@ -121,4 +121,19 @@ variable "image_name" {
 variable "image_resource_group" {
   type        = string
   description = "Resource group where custom image resides"
+}
+
+variable "tf_state_resource_group_name" {
+  type        = string
+  description = "Name of the resource group of the storage account supposed to store the Terraform state file"
+}
+
+variable "tf_state_storage_account_name" {
+  type        = string
+  description = "Name of the storage account supposed to store the Terraform state file"
+}
+
+variable "tf_state_container_name" {
+  type        = string
+  description = "Name of the container supposed to store the Terraform state file"
 }
