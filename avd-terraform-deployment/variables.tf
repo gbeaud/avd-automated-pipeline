@@ -111,3 +111,14 @@ variable "local_admin_password" {
   description = "local admin password"
   sensitive   = true
 }
+
+
+variable "image_name" {
+  type        = string
+  description = "Name of the custom image to be used"
+}
+
+variable "image_resource_group" {
+  type        = string
+  description = "Resource group where custom image resides"
+}

@@ -1,14 +1,12 @@
 locals {
-  # This command creates an error due to a bug in terraform's  registry.terraform.io/hashicorp/azurerm v2.92.0. A workaround is to paste the token in static, but needs to be changed later when the issue is fixed and terraform is updated.
-  
-  # This was the original code
-  # registration_token = azurerm_virtual_desktop_host_pool.hostpool.registration_info[0].token
-  
-  # New tentative to solve the issue
-  #registration_token = azurerm_virtual_desktop_host_pool.hostpool.registration_token
-
-  # Proposed solution: https://github.com/hashicorp/terraform-provider-azurerm/pull/14134
+  # Solution to a bug in terraform'sregistry.terraform.io/hashicorp/azurerm v2.92.0: https://github.com/hashicorp/terraform-provider-azurerm/pull/14134#issuecomment-1035467548
   registration_token = azurerm_virtual_desktop_host_pool_registration_info.registration_info.token
+}
+
+# Identify your custom image
+data "azurerm_image" "image" {
+  name                = var.image_name
+  resource_group_name = var.image_resource_group
 }
 
 resource "random_string" "AVD_local_password" {
@@ -53,7 +51,7 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
     storage_account_type = "Standard_LRS"
   }
 
-# Windows 10
+  # Windows 10
   # source_image_reference {
   #   publisher = "MicrosoftWindowsDesktop"
   #   offer     = "Windows-10"
@@ -61,13 +59,15 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
   #   version   = "latest"
   # }
 
-# Windows 11 multi-session
-  source_image_reference {
-    publisher = "MicrosoftWindowsDesktop"
-    offer     = "office-365"
-    sku       = "win11-21h2-avd-m365"
-    version   = "latest"
-  }
+  # Windows 11 multi-session
+  # source_image_reference {
+  #   publisher = "MicrosoftWindowsDesktop"
+  #   offer     = "office-365"
+  #   sku       = "win11-21h2-avd-m365"
+  #   version   = "latest"
+  # }
+
+  source_image_id = "${data.azurerm_image.image.id}"
 
   depends_on = [
     azurerm_resource_group.rg,
