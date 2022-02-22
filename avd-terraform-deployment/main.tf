@@ -1,3 +1,11 @@
+# Reference of the storage account where the state file should be stored
+backend "azurerm" {
+  resource_group_name  = "rg-management-prod-westeu-01"
+  storage_account_name = "saterraformstate01"
+  container_name       = "terraform-state-01"
+  key                  = "terraform.tfstate"
+}
+
 # Create AVD Resource Group
 resource "azurerm_resource_group" "rg" {
   name     = var.rg_name
