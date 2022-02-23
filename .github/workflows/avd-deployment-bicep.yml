@@ -39,7 +39,7 @@ jobs:
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          #resourceGroupName: ${{ secrets.AZURE_BICEP_RG }}
+          resourceGroupName: ${{ secrets.AZURE_BICEP_RG }}
           template: ./avd-bicep-deployment/main.bicep
-          parameters: storagePrefix=mystore; location=westeurope
+          parameters: location=westeurope; name="avd-bicep-deployment-test-westeu-01"
           failOnStdErr: false
