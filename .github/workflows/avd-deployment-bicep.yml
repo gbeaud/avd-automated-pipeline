@@ -1,0 +1,47 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Bicep AVD deployment
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches:
+    - main
+    paths:
+    - avd-bicep-deployment/**
+    - .github/workflows/avd-deployment-bicep.yml
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build-and-deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@main
+
+      # Log into Azure
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Azure CLI Action
+        uses: Azure/cli@v1
+        with:
+          # Azure CLI version to be used to execute the script. If not provided, latest version is used
+          azcliversion: 2.30.0
+          # Specify the script here
+          # $GITHUB_WORKSPACE = variable containing the root github repo
+          inlineScript: |
+            #Lists all resource groups in the subscription
+            az group list -otable
+            #az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
