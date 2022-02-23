@@ -40,6 +40,6 @@ jobs:
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           resourceGroupName: ${{ secrets.AZURE_BICEP_RG }}
-          template: $GITHUB_WORKSPACE/avd-bicep-deployment/main.bicep
+          template: ./avd-bicep-deployment/main.bicep
           parameters: storagePrefix=mystore; location=westeurope
           failOnStdErr: false
