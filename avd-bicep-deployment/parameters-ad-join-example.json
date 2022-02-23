@@ -17,10 +17,10 @@
       "value": false
     },
     "vnetAddressPrefix": {
-      "value": "10.10.0.0/16"
+      "value": "10.2.0.0/24"
     },
     "snetAddressPrefix": {
-      "value": "10.10.0.0/24"
+      "value": "10.2.0.0/24"
     },
     "maxSessionLimit": {
       "value": 2
@@ -29,25 +29,25 @@
       "value": "Standard_B2ms"
     },
     "vmCount": {
-      "value": 4
+      "value": 2
     },
     "vmLicenseType": {
       "value": "Windows_Client"
     },
     "hubVnetName": {
-      "value": "vn-adds"
+      "value": "adVNET"
     },
     "hubVnetRgName": {
-      "value": "rg-adds"
+      "value": "rg-domain-controler-westeurope"
     },
     "dnsServer": {
-      "value": "10.102.2.4"
+      "value": "10.0.0.4"
     },
     "domainToJoin": {
-      "value": "contoso.fun"
+      "value": "AZUREVIRTUALDESKTOPDEMO.LOCAL"
     },
     "ouPath": {
-      "value": "OU=AVD,DC=contoso,DC=fun"
+      "value": ""
     },
     "rbacObjectId": {
       "value": "2b4794f4-1980-43e0-8cca-92523f6e1004"
