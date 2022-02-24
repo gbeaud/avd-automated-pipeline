@@ -1,4 +1,4 @@
-# ARM Templates for Remote Desktop Services
+# ARM Templates for Remote Desktop Services 
 
 This repository contains latest version of RDS deployment templates and DSC resources.
 
