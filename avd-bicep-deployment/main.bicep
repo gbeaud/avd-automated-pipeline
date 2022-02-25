@@ -63,7 +63,7 @@ module virtualNetwork 'modules/virtualNetwork.bicep' = {
 }
 
 // Creates a VNET peering from the hub virtual network to the AVD VNET if we are AD domain joining the session hosts
-// No need for this to run if we are not AD domain joining
+// No need for this to run if we are not AD domain joining 
 module virtualNetworkPeering1 'modules/virtualNetworkPeering.bicep' = if (!aadJoin) {
   name: 'vnetPeeringDeploy1'
   scope: az.resourceGroup(resourceGroup.name)
