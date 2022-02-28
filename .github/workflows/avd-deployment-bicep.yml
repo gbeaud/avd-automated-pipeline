@@ -61,6 +61,8 @@ jobs:
           name=avd-bicep-test-westeu-01
           localAdminName=Demouser
           localAdminPassword=${{ secrets.AVD_LOCAL_USER_PASSWORD }}
+          domainUserName=DomainAdmin@AZUREVIRTUALDESKTOPDEMO.LOCAL
+          domainPassword=${{ secrets.AVD_DOMAIN_ADMIN_PASSWORD }}
           @./avd-bicep-deployment/parameters-ad-join-example.json
         failOnStdErr: false
 
