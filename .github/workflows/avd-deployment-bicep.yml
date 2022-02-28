@@ -44,7 +44,7 @@ jobs:
     #       echo "Azure resource group created"
 
     # Deploy Bicep file
-    - name: Deploy Bicep
+    # - name: Deploy Bicep
     - uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
