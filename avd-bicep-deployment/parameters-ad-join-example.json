@@ -29,7 +29,7 @@
       "value": "Standard_B2ms"
     },
     "vmCount": {
-      "value": 2
+      "value": 1
     },
     "vmLicenseType": {
       "value": "Windows_Client"
