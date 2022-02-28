@@ -36,8 +36,6 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Create resource group
     - uses: Azure/CLI@v1
       with:
         inlineScript: |
