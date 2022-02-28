@@ -25,8 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     # Define environment variables
     env:
-      resourceGroupName: rg-avd-bicep-test-westeu-01
-      resourceGroupLocation: westeurope
+      # resourceGroupName: rg-avd-bicep-test-westeu-01
+      # resourceGroupLocation: westeurope
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
@@ -36,13 +36,13 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - uses: Azure/CLI@v1
-      name: Create resource group
-      with:
-        inlineScript: |
-          #!/bin/bash
-          az group create --name ${{ env.resourceGroupName }} --location ${{ env.resourceGroupLocation }}
-          echo "Azure resource group created"
+    # - uses: Azure/CLI@v1
+    #   name: Create resource group
+    #   with:
+    #     inlineScript: |
+    #       #!/bin/bash
+    #       az group create --name ${{ env.resourceGroupName }} --location ${{ env.resourceGroupLocation }}
+    #       echo "Azure resource group created"
 
     # Deploy Bicep file
     # - name: Deploy Bicep
@@ -55,7 +55,7 @@ jobs:
         # subscriptionId: d351604a-5f79-488d-a73e-666707f38f1f
         template: ./avd-bicep-deployment/main.bicep
         # subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        deploymentMode: Complete
+        # deploymentMode: Complete
         parameters: 
           location=westeurope 
           name=avd-bicep-test-westeu-01
