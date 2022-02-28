@@ -2,8 +2,8 @@ targetScope = 'subscription'
 // targetScope = 'resourceGroup'
 
 param name string = 'avd-bicep-test'
-// param location string = deployment().location
-param location string = 'westeurope'
+param location string = deployment().location
+// param location string = 'westeurope'
 param tags object
 param aadJoin bool
 param vnetAddressPrefix string
