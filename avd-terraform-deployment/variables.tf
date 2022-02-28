@@ -58,7 +58,7 @@ variable "subnet_range" {
 }
 
 variable "avd_users" {
-  description = "AVD users"
+  description = "AVD users - Terraform"
   default     = []
 }
 

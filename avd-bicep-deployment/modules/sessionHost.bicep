@@ -50,8 +50,8 @@ resource networkInterface 'Microsoft.Network/networkInterfaces@2019-07-01' = [fo
 }]
 
 resource sessionHost 'Microsoft.Compute/virtualMachines@2019-07-01' = [for i in range(0, count): {
-  // name: 'vm-${take(name, 10)}-${i + 1}'
-  name: 'vm-${name}-${i + 1}'
+  name: 'vm-${take(name, 14)}-${i + 1}'
+  // name: 'vm-${name}-${i + 1}'
   location: location
   tags: tags
   identity: {
