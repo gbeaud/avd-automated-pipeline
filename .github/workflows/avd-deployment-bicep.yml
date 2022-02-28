@@ -61,7 +61,7 @@ jobs:
           name=avd-bicep-test-westeu-01
           localAdminName=Demouser
           localAdminPassword=${{ secrets.AVD_LOCAL_USER_PASSWORD }}
-          @parameters-ad-join-example.json
+          @./avd-bicep-deployment/parameters-ad-join-example.json
         failOnStdErr: false
 
 
