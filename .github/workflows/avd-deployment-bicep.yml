@@ -49,10 +49,10 @@ jobs:
     - uses: azure/arm-deploy@v1
       name: Deploy AVD with Bicep
       with:
-        failOnStdErr: false
+        # scope: 
         resourceGroupName: ${{ env.resourceGroupName }}
-        # subscriptionId: d351604a-5f79-488d-a73e-666707f38f1f
-        subscription: d351604a-5f79-488d-a73e-666707f38f1f
+        subscriptionId: d351604a-5f79-488d-a73e-666707f38f1f
         template: ./avd-bicep-deployment/main.bicep
         # subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         parameters: location=westeurope name="avd-bicep-test-westeu-01"
+        failOnStdErr: false
