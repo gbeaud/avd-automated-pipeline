@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     # Define environment variables
     env:
-      resourceGroupName: rg-avd-bicep-deployment-test-westeu-01
+      resourceGroupName: rg-avd-bicep-test-westeu-01
       resourceGroupLocation: westeurope
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -47,8 +47,8 @@ jobs:
     # - name: Deploy Bicep
     - uses: azure/arm-deploy@v1
       with:
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        # subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ env.resourceGroupName }}
         template: ./avd-bicep-deployment/main.bicep
-        parameters: location=westeurope name="avd-bicep-deployment-test-westeu-01"
+        parameters: location=westeurope name="avd-bicep-test-westeu-01"
         failOnStdErr: false
