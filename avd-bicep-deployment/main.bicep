@@ -1,4 +1,5 @@
-targetScope = 'subscription'
+// targetScope = 'subscription'
+targetScope = 'resourceGroup'
 
 param name string = 'avd-bicep-test'
 // param location string = deployment().location
