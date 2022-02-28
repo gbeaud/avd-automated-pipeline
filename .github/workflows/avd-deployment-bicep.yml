@@ -36,12 +36,12 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - uses: Azure/CLI@v1
-      with:
-        inlineScript: |
-          #!/bin/bash
-          az group create --name ${{ env.resourceGroupName }} --location ${{ env.resourceGroupLocation }}
-          echo "Azure resource group created"
+    # - uses: Azure/CLI@v1
+    #   with:
+    #     inlineScript: |
+    #       #!/bin/bash
+    #       az group create --name ${{ env.resourceGroupName }} --location ${{ env.resourceGroupLocation }}
+    #       echo "Azure resource group created"
 
     # Deploy Bicep file
     - name: Deploy Bicep
