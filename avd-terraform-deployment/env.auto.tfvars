@@ -26,7 +26,7 @@ subnet_range = ["10.1.1.0/24"]
 
 #Hosts
 #Number of hosts to deploy
-rdsh_count = 2
+rdsh_count = 1
 
 #Reference to custom VM image
 # image_name = "img-win11-multi-session-latest"
