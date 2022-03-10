@@ -1,5 +1,5 @@
 variable "rg_name" {
-  type = string
+  type        = string
   default     = "rg-avd-terraform-test-westeu-01"
   description = "Name of the Resource group in which to deploy the AVD resources"
 }
