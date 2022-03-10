@@ -1,16 +1,18 @@
 # Create AVD Resource Group
 resource "azurerm_resource_group" "rg" {
-  name     = var.rg_name
+  # name     = var.rg_name
+  name     = "rg-${var.deployment_name}"
   location = var.deploy_location
 }
 
 # Create AVD workspace
 resource "azurerm_virtual_desktop_workspace" "workspace" {
-  name                = var.workspace
+  # name                = var.workspace
+  name                = "ws-${var.deployment_name}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.deploy_location
-  friendly_name       = var.workspace
-  description         = var.workspace
+  friendly_name       = "ws-${var.deployment_name}"
+  description         = "ws-${var.deployment_name}"
 }
 
 resource "time_rotating" "avd_token" {
@@ -21,8 +23,10 @@ resource "time_rotating" "avd_token" {
 resource "azurerm_virtual_desktop_host_pool" "hostpool" {
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = var.deploy_location
-  name                     = var.hostpool
-  friendly_name            = var.hostpool
+  # name                     = var.hostpool
+  name                     = "hp-${var.deployment_name}"
+  # friendly_name            = var.hostpool
+  friendly_name            = "hp-${var.deployment_name}"
   validate_environment     = true
   custom_rdp_properties    = "audiocapturemode:i:1;audiomode:i:0;"
   description              = "${var.prefix} Terraform HostPool"
