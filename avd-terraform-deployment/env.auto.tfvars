@@ -14,7 +14,7 @@ dns_servers    = ["10.0.0.4"]
 aad_group_name = "AVD Users"
 domain_name    = "AZUREVIRTUALDESKTOPDEMO.LOCAL"
 
-#Hub/connectivity VNet variables (optional, this will create a network peering)
+#Hub/connectivity VNet variables (optional, this will create a network peering with hub vnet)
 hub_rg   = "rg-hub-connectivity-prod-westeu"
 hub_vnet = "vnet-hub-connectivity-prod-westeu-01"
 
