@@ -5,7 +5,7 @@
 # Basics
 deploy_location = "west europe"
 deployment_name = "avd-terraform-test-westeu-01"
-# rg_name         = "rg-avd-terraform-test-westeu-01"
+rg_name         = "rg-avd-terraform-test-westeu-01"
 
 #Active Directory variables
 ad_rg          = "rg-domain-controler-westeurope"
