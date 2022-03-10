@@ -37,7 +37,7 @@ image_resource_group = "rg-imagebuilder-weu-2"
 #AVD artifacts
 # workspace = "ws-${var.deployment_name}"
 # hostpool  = "hp-avd-terraform-test-westeu-01"
-prefix = "avd-terraform-test"
+prefix = "avd-terraform"
 
 #Users
 avd_users = [
