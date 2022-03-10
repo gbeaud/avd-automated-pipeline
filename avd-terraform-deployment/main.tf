@@ -21,10 +21,10 @@ resource "time_rotating" "avd_token" {
 
 # Create AVD host pool
 resource "azurerm_virtual_desktop_host_pool" "hostpool" {
-  resource_group_name      = azurerm_resource_group.rg.name
-  location                 = var.deploy_location
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.deploy_location
   # name                     = var.hostpool
-  name                     = "hp-${var.deployment_name}"
+  name = "hp-${var.deployment_name}"
   # friendly_name            = var.hostpool
   friendly_name            = "hp-${var.deployment_name}"
   validate_environment     = true
