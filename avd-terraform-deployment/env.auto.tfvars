@@ -4,7 +4,8 @@
 
 # Basics
 deploy_location = "west europe"
-rg_name         = "rg-avd-terraform-test-westeu-01"
+name            = "avd-terraform-test-westeu-01"
+rg_name         = "rg-${var.name}"
 
 #Active Directory variables
 ad_rg          = "rg-domain-controler-westeurope"
@@ -34,9 +35,9 @@ image_name           = "img-win11-multi-session-latest-2"
 image_resource_group = "rg-imagebuilder-weu-2"
 
 #AVD artifacts
-workspace = "ws-avd-terraform-test"
-hostpool  = "hp-avd-terraform-test"
-prefix    = "avd-test"
+workspace = "ws-${var.name}"
+hostpool  = "hp-${var.name}"
+prefix    = "avd-terraform-test"
 
 #Users
 avd_users = [
