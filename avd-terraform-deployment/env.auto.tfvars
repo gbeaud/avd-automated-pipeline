@@ -11,7 +11,7 @@ rg_name         = "rg-avd-terraform-test-westeu-01"
 ad_rg          = "rg-domain-controler-westeurope"
 ad_vnet        = "adVNET"
 dns_servers    = ["10.0.0.4"]
-aad_group_name = "AVD Users"
+aad_group_name = "AVD Users (Terraform)"
 domain_name    = "AZUREVIRTUALDESKTOPDEMO.LOCAL"
 
 #Hub/connectivity VNet variables (optional, this will create a network peering with hub vnet)
