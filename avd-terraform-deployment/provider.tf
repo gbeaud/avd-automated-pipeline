@@ -9,7 +9,7 @@ terraform {
     }
   }
 
-  # Reference of the storage account where the state file should be stored
+  # Reference of the storage account where the state file should be stored 
   backend "azurerm" {
     resource_group_name  = "rg-core-services-avd-landing-zone-prod-westeu"
     storage_account_name = "saterraformstate01"
