@@ -19,8 +19,8 @@ hub_rg   = "rg-hub-connectivity-prod-westeu"
 hub_vnet = "vnet-hub-connectivity-prod-westeu"
 
 #Network
-vnet_range   = ["10.10.1.0/16"]
-subnet_range = ["10.10.1.0/24"]
+vnet_range   = ["10.20.0.0/16"]
+subnet_range = ["10.20.0.0/24"]
 
 #Storage
 
