@@ -4,13 +4,9 @@
   "parameters": {
     "tags": {
       "value": {
-        "availability-level": "a1",
-        "environment": "prod",
-        "mission": "administrative",
-        "po-number": "zzz",
-        "protection-level": "p1",
-        "source": "pauldotyu/azure-virtual-desktop-bicep",
-        "join-type": "AD"
+        "Environment": "Demo",
+        "Source": "pauldotyu/azure-virtual-desktop-bicep",
+        "DomainJoined": "AD"
       }
     },
     "aadJoin": {
