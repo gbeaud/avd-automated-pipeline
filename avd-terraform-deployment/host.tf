@@ -3,10 +3,10 @@ locals {
 }
 
 # Identify your custom image
-data "azurerm_image" "image" {
-  name                = var.image_name
-  resource_group_name = var.image_resource_group
-}
+# data "azurerm_image" "image" {
+#   name                = var.image_name
+#   resource_group_name = var.image_resource_group
+# }
 
 resource "random_string" "AVD_local_password" {
   count            = var.rdsh_count

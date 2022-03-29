@@ -39,8 +39,9 @@ resource "azurerm_subnet_network_security_group_association" "nsg_assoc" {
 }
 
 #Peering with Active Directory VNet
-
+#The "provider" block refers to the other subscription (identity) defined in provider.tf
 data "azurerm_virtual_network" "ad_vnet_data" {
+  provider            = azurerm.identity_subscription
   name                = var.ad_vnet
   resource_group_name = var.ad_rg
 }
