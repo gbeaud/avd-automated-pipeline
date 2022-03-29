@@ -38,12 +38,13 @@ jobs:
     - uses: azure/arm-deploy@v1
       name: Deploy AVD with Bicep
       with:
-        scope: subscription
+        # scope: subscription
+        scope: tenant
         region: westeurope
         template: ./avd-bicep-deployment/main.bicep
         parameters: 
           location=westeurope 
-          name=avd-bicep-test-westeu-01
+          name=avd-bicep-demo-westeu-01
           localAdminName=Demouser
           localAdminPassword=${{ secrets.AVD_LOCAL_USER_PASSWORD }}
           domainUserName=DomainAdmin@AZUREVIRTUALDESKTOPDEMO.LOCAL

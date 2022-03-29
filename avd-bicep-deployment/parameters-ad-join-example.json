@@ -17,10 +17,10 @@
       "value": false
     },
     "vnetAddressPrefix": {
-      "value": "10.2.0.0/24"
+      "value": "10.30.0.0/16"
     },
     "snetAddressPrefix": {
-      "value": "10.2.0.0/24"
+      "value": "10.30.0.0/24"
     },
     "maxSessionLimit": {
       "value": 2
