@@ -26,6 +26,7 @@ provider "azurerm" {
 # Adding reference to identity subscription to use terraform across subscriptions
 provider "azurerm" {
   features {}
+  skip_provider_registration = "true"
   alias           = "identity_subscription"
   subscription_id = "d351604a-5f79-488d-a73e-666707f38f1f"
 }
@@ -33,6 +34,7 @@ provider "azurerm" {
 # Adding reference to connectivity/hub subscription to use terraform across subscriptions
 provider "azurerm" {
   features {}
+  skip_provider_registration = "true"
   alias           = "connectivity_subscription"
   subscription_id = "6bbb4737-d569-4333-986b-2becd81760e4"
 }
