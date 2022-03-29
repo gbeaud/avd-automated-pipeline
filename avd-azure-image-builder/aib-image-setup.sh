@@ -25,7 +25,7 @@ az provider register -n Microsoft.Network
 ############ Variables definitions
 
 # Define the resource group's name
-imageResourceGroup=rg-imagebuilder-test-westeu-01
+imageResourceGroup=rg-imagebuilder-demo-westeu-01
 # imageResourceGroup=rg-imagebuilder-weu-2
 # Datacenter location
 location=westeurope
