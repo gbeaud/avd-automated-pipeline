@@ -11,7 +11,7 @@ terraform {
 
   # Reference of the storage account where the state file should be stored
   backend "azurerm" {
-    resource_group_name  = "rg-management-prod-westeu-01"
+    resource_group_name  = "rg-management-storage-prod-westeu-01"
     storage_account_name = "saterraformstate01"
     container_name       = "terraform-state-01"
     key                  = "terraform.tfstate"
