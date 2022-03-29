@@ -39,7 +39,7 @@ jobs:
       name: Deploy AVD with Bicep
       with:
         # scope: subscription
-        scope: tenant
+        scope: managementgroup
         region: westeurope
         template: ./avd-bicep-deployment/main.bicep
         parameters: 
