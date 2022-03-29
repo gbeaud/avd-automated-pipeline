@@ -59,14 +59,15 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
   # }
 
   # Windows 11 multi-session
-  # source_image_reference {
-  #   publisher = "MicrosoftWindowsDesktop"
-  #   offer     = "office-365"
-  #   sku       = "win11-21h2-avd-m365"
-  #   version   = "latest"
-  # }
+  source_image_reference {
+    publisher = "MicrosoftWindowsDesktop"
+    offer     = "office-365"
+    sku       = "win11-21h2-avd-m365"
+    version   = "latest"
+  }
 
-  source_image_id = data.azurerm_image.image.id
+  # Custom image
+  # source_image_id = data.azurerm_image.image.id
 
   depends_on = [
     azurerm_resource_group.rg,
