@@ -25,7 +25,7 @@ provider "azurerm" {
 
 # Adding reference to identity subscription to use terraform across subscriptions
 provider "azurerm" {
-  features {}  
+  features {}
   alias           = "identity_subscription"
   subscription_id = "d351604a-5f79-488d-a73e-666707f38f1f"
 }
