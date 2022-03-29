@@ -62,8 +62,9 @@ resource "azurerm_virtual_network_peering" "peer2" {
 }
 
 #Peering with Hub/connectivity VNet (optional)
-
+#The "provider" block refers to the other subscription defined in provider.tf
 data "azurerm_virtual_network" "hub_vnet_data" {
+  provider            = azurerm.connectivity_subscription
   name                = var.hub_vnet
   resource_group_name = var.hub_rg
 }
