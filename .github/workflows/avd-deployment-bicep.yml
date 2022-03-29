@@ -38,8 +38,8 @@ jobs:
     - uses: azure/arm-deploy@v1
       name: Deploy AVD with Bicep
       with:
-        # scope: subscription
-        scope: managementgroup
+        scope: subscription
+        # scope: managementgroup
         region: westeurope
         template: ./avd-bicep-deployment/main.bicep
         parameters: 
