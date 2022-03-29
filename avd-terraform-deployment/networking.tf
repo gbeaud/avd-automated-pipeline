@@ -47,7 +47,8 @@ data "azurerm_virtual_network" "ad_vnet_data" {
 }
 
 resource "azurerm_virtual_network_peering" "peer1" {
-  name                      = "peer_avd_ad"
+  provider                  = azurerm.identity_subscription
+  name                      = "peer_avd-terraform_ad"
   resource_group_name       = var.rg_name
   virtual_network_name      = azurerm_virtual_network.vnet.name
   remote_virtual_network_id = data.azurerm_virtual_network.ad_vnet_data.id
@@ -55,7 +56,8 @@ resource "azurerm_virtual_network_peering" "peer1" {
 
 resource "azurerm_virtual_network_peering" "peer2" {
   # name                      = "peer_ad_avd-${formatdate("YYYYMMMDD-hhmmss", timestamp())}"
-  name                      = "peer_ad_avd-terraform-01"
+  provider                  = azurerm.identity_subscription
+  name                      = "peer_ad_avd-terraform"
   resource_group_name       = var.ad_rg
   virtual_network_name      = var.ad_vnet
   remote_virtual_network_id = azurerm_virtual_network.vnet.id
@@ -70,7 +72,8 @@ data "azurerm_virtual_network" "hub_vnet_data" {
 }
 
 resource "azurerm_virtual_network_peering" "peer_hub1" {
-  name                      = "peer_avd_hub"
+  provider                  = azurerm.connectivity_subscription
+  name                      = "peer_avd-terraform_hub"
   resource_group_name       = var.rg_name
   virtual_network_name      = azurerm_virtual_network.vnet.name
   remote_virtual_network_id = data.azurerm_virtual_network.hub_vnet_data.id
@@ -78,7 +81,8 @@ resource "azurerm_virtual_network_peering" "peer_hub1" {
 
 resource "azurerm_virtual_network_peering" "peer_hub2" {
   # name                      = "peer_hub_avd-${formatdate("YYYYMMMDD-hhmmss", timestamp())}"
-  name                      = "peer_hub_avd-terraform-01"
+  provider                  = azurerm.connectivity_subscription
+  name                      = "peer_hub_avd-terraform"
   resource_group_name       = var.hub_rg
   virtual_network_name      = var.hub_vnet
   remote_virtual_network_id = azurerm_virtual_network.vnet.id
