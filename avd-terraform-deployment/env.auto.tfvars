@@ -4,8 +4,8 @@
 
 # Basics
 deploy_location = "west europe"
-deployment_name = "avd-terraform-test-westeu-01"
-rg_name         = "rg-avd-terraform-test-westeu-01"
+deployment_name = "avd-terraform-demo-westeu-01"
+rg_name         = "rg-avd-terraform-demo-westeu-01"
 
 #Active Directory variables
 ad_rg          = "rg-domain-controler-westeurope"
@@ -16,11 +16,11 @@ domain_name    = "AZUREVIRTUALDESKTOPDEMO.LOCAL"
 
 #Hub/connectivity VNet variables (optional, this will create a network peering with hub vnet)
 hub_rg   = "rg-hub-connectivity-prod-westeu"
-hub_vnet = "vnet-hub-connectivity-prod-westeu-01"
+hub_vnet = "vnet-hub-connectivity-prod-westeu"
 
 #Network
-vnet_range   = ["10.1.1.0/24"]
-subnet_range = ["10.1.1.0/24"]
+vnet_range   = ["10.10.1.0/16"]
+subnet_range = ["10.10.1.0/24"]
 
 #Storage
 
