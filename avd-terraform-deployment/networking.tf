@@ -63,7 +63,7 @@ resource "azurerm_virtual_network_peering" "peer2" {
   remote_virtual_network_id = azurerm_virtual_network.vnet.id
 }
 
-#Peering with Hub/connectivity VNet (optional)
+#Peering with Hub/connectivity VNet (optional) 
 #The "provider" block refers to the other subscription defined in provider.tf
 data "azurerm_virtual_network" "hub_vnet_data" {
   provider            = azurerm.connectivity_subscription
