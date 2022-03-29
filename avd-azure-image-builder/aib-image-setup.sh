@@ -33,15 +33,15 @@ location=westeurope
 #additionalregion=eastus
 # Run output name 
 #runOutputName=aibWindows
-runOutputName=aib-windows
+runOutputName=aib-windows-image
 
 # Name of the new image template
 # To keep a version control over templates, it can be named with date and time
 # templateName=image-template-$( date '+%F-%H%M%S' )
-templateName=it-win11-multi-session-latest
+templateName=it-windows11-multi-session-latest
 # Name of the image to be created
 # imageName=img-win11-multi-session-latest-2
-imageName=img-win11-multi-session-latest
+imageName=img-windows11-multi-session-latest
 
 subscriptionID=$(az account show --query id --output tsv)
 
@@ -65,7 +65,7 @@ imgBuilderId=/subscriptions/$subscriptionID/resourcegroups/$imageResourceGroup/p
 curl https://raw.githubusercontent.com/azure/azvmimagebuilder/master/solutions/12_Creating_AIB_Security_Roles/aibRoleImageCreation.json -o aibRoleImageCreation.json
 
 #imageRoleDefName="Azure Image Builder Image Def"$(date +'%s')
-imageRoleDefName="Azure Image Builder Image Def"
+imageRoleDefName="Azure Image Builder Image Definition"
 
 # Update the role definition template with parameters corresponding to this execution environment
 sed -i -e "s/<subscriptionID>/$subscriptionID/g" aibRoleImageCreation.json
@@ -97,12 +97,9 @@ echo Template JSON file was created
 ######################## Create the image template
 
 # Deletes the previous template
-az image builder delete \
---name $templateName \
---resource-group $imageResourceGroup
-
-# Waits for the deletion to be complete before proceeding
-#az image builder wait --deleted --name $templateName --resource-group $imageResourceGroup
+# az image builder delete \
+# --name $templateName \
+# --resource-group $imageResourceGroup
 
 # Submit the image configuration to the VM Image Builder service
 # WARNING: there may be a line break at the bottom of the JSON file causing a "LinkedInvalidPropertyId" error. Make sure the file is well formatted! The standard file should not be modified; ref to the original file: https://raw.githubusercontent.com/azure/azvmimagebuilder/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/temporaryImageTemplateWin.json
@@ -116,9 +113,9 @@ az resource create \
 ######################## Builds the image
 
 # Ensures there is no previous image with the same name
-az image delete \
---name $imageName \
---resource-group $imageResourceGroup
+# az image delete \
+# --name $imageName \
+# --resource-group $imageResourceGroup
 
 # Builds the image (This may take about 15-20 minutes)
 az resource invoke-action \
@@ -137,6 +134,6 @@ az resource invoke-action \
 
 # To keep a versioning/history of image templates, remove the below command.
 
-az image builder delete \
---name $templateName \
---resource-group $imageResourceGroup
+# az image builder delete \
+# --name $templateName \
+# --resource-group $imageResourceGroup
