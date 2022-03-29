@@ -47,7 +47,6 @@ data "azurerm_virtual_network" "ad_vnet_data" {
 }
 
 resource "azurerm_virtual_network_peering" "peer1" {
-  provider                  = azurerm.identity_subscription
   name                      = "peer_avd-terraform_ad"
   resource_group_name       = var.rg_name
   virtual_network_name      = azurerm_virtual_network.vnet.name
@@ -72,7 +71,6 @@ data "azurerm_virtual_network" "hub_vnet_data" {
 }
 
 resource "azurerm_virtual_network_peering" "peer_hub1" {
-  provider                  = azurerm.connectivity_subscription
   name                      = "peer_avd-terraform_hub"
   resource_group_name       = var.rg_name
   virtual_network_name      = azurerm_virtual_network.vnet.name
