@@ -17,6 +17,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# This permissions block was added to try to use "client-id, tenant-id, subscription-id" to login. If finally using the "creds" block, remove this permissions block.
+permissions:
+      id-token: write
+      contents: read
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -27,14 +32,16 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@main
+      name: Checkout
 
     # Log into Azure
     - uses: azure/login@v1
+      name: Az CLI login
       with:
         # Using just the "creds" line works but we can't set the subscription
         # creds: ${{ secrets.AZURE_CREDENTIALS }}
-        client-id: ${{ secrets.AZURE_AD_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_AD_TENANT_ID }}
+        client-id: e1dfda5d-1298-4d2a-8d02-458b77461f66
+        tenant-id: 9b7c2d76-b964-432d-9483-1a6f4122562d
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_LANDINGZONE }}
 
     # Deploy Bicep file
