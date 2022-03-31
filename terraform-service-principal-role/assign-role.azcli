@@ -15,5 +15,7 @@ az role definition list --custom-role-only true
 #Assigns custom role to service principal
 az role assignment create --role "role-terraform-service-principal-01" --assignee "e1dfda5d-1298-4d2a-8d02-458b77461f66" --scope "/subscriptions/d351604a-5f79-488d-a73e-666707f38f1f"
 
+az role assignment create --role "role-avd-deployment-01" --assignee "d1c19fc8-af5e-4714-82d8-c91a3a898c1a" --scope "/subscriptions/a0181df3-8cdb-487c-af23-d837045ceba4"
+
 #Assign users to a host pool (Powershell) 
 Update-AzWvdSessionHost -HostPoolName hp-avd-terraform-test -Name avd-test-1.azurevirtualdesktopdemo.local -ResourceGroupName rg-avd-terraform-westeu-test-06 -AssignedUser admin@M365x389859.onmicrosoft.com
