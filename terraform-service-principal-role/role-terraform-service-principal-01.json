@@ -1,7 +1,7 @@
 {
-  "Name": "role-terraform-service-principal-01",
+  "Name": "role-avd-deployment-service-principal-01",
   "IsCustom": true,
-  "Description": "Role for terraform",
+  "Description": "Role for avd deployment",
   "Actions": [
 	"Microsoft.Storage/storageAccounts/blobServices/containers/read",
   "Microsoft.Authorization/roleAssignments/write",
@@ -14,6 +14,7 @@
   ],
   "NotDataActions": [],
   "AssignableScopes": [
-    "/subscriptions/d351604a-5f79-488d-a73e-666707f38f1f"
+    "/subscriptions/d351604a-5f79-488d-a73e-666707f38f1f",
+    "/subscriptions/a0181df3-8cdb-487c-af23-d837045ceba4"
   ]
 }
