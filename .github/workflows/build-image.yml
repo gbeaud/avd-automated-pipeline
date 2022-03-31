@@ -42,16 +42,16 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
 
-      - name: Azure CLI Action
-        uses: Azure/cli@v1
-        with:
-          # Azure CLI version to be used to execute the script. If not provided, latest version is used
-          azcliversion: 2.30.0
-          # Specify the script here
-          # $GITHUB_WORKSPACE = variable containing the root github repo
-          inlineScript: |
-            # az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
-            # az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
-            chmod +x $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
-            $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
-            echo end of CLI action
+    - name: Azure CLI Action
+      uses: Azure/cli@v1
+      with:
+        # Azure CLI version to be used to execute the script. If not provided, latest version is used
+        azcliversion: 2.30.0
+        # Specify the script here
+        # $GITHUB_WORKSPACE = variable containing the root github repo
+        inlineScript: |
+          # az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
+          # az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
+          chmod +x $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
+          $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
+          echo end of CLI action
