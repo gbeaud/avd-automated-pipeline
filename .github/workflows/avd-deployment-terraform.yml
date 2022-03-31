@@ -15,10 +15,13 @@ jobs:
     # Using a service principal to access Azure
     env:
       # Variables used in GitHub Actions workflow
-      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      # ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }} => remove from github secrets
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_GITHUB_ACTIONS }}
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_SECRET_GITHUB_ACTIONS }}
+      # # ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }} => remove from github secrets
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID_LANDINGZONE }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+      # ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }} => remove from github secrets
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
     runs-on: ubuntu-latest
     environment: test
  

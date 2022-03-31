@@ -17,6 +17,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+      id-token: write
+      contents: read
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -26,8 +30,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+    - name: 'Checkout'
+      uses: actions/checkout@v2
+
+    - name: 'Az OpenID CLI login'
+      uses: azure/login@v1
+      with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID_IMAGE_BUILDER }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
 
       - name: Azure CLI Action
         uses: Azure/cli@v1
@@ -37,8 +50,8 @@ jobs:
           # Specify the script here
           # $GITHUB_WORKSPACE = variable containing the root github repo
           inlineScript: |
-            az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
-            az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
+            # az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
+            # az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
             chmod +x $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
             $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
             echo end of CLI action

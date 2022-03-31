@@ -31,7 +31,7 @@ imageResourceGroup=rg-imagebuilder-demo-westeu-01
 location=westeurope
 # Additional region to replicate the image to (optional)
 #additionalregion=eastus
-# Run output name 
+# Run output name
 #runOutputName=aibWindows
 runOutputName=aib-windows-image
 
@@ -51,7 +51,7 @@ az group create -n $imageResourceGroup -l $location
 ############# Create user-assigned managed identity and grant permissions
 
 # Create user assigned identity for image builder to access the storage account where the script is located
-#identityName=aibBuiUserId$(date +'%s') 
+#identityName=aibBuiUserId$(date +'%s')
 identityName=aibBuiUserId
 az identity create -g $imageResourceGroup -n $identityName
 
@@ -124,7 +124,7 @@ az resource invoke-action \
 --name $templateName \
 --action Run
 
-######################## Delete the image template (optional) 
+######################## Delete the image template (optional)
 
 # When creating an image template, in the background, image builder also creates a staging resource group in your subscription. This resource group is used for the image build. It's in the format: IT_<DestinationResourceGroup>_<TemplateName>.
 
