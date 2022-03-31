@@ -14,9 +14,11 @@ jobs:
     name: 'Terraform'
     # Using a service principal to access Azure
     env:
-      # Variables used in GitHub Actions workflow
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_GITHUB_ACTIONS }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET_GITHUB_ACTIONS }}
+      # Variables used in GitHub Actions workflow ==> REMOVE ALL THE BELOW SECRETS IN GITHUB
+      # ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_GITHUB_ACTIONS }}
+      # ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET_GITHUB_ACTIONS }}
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_AVD_DEPLOYMENT }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET_AVD_DEPLOYMENT }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID_LANDINGZONE }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
     runs-on: ubuntu-latest
