@@ -22,26 +22,23 @@ az provider register -n Microsoft.KeyVault
 az provider register -n Microsoft.Storage
 az provider register -n Microsoft.Network
 
-############ Variables definitions
+############ Cutom variables definitions
 
-# Define the resource group's name
 imageResourceGroup=rg-imagebuilder-demo-westeu-01
-# imageResourceGroup=rg-imagebuilder-weu-2
-# Datacenter location
 location=westeurope
-# Additional region to replicate the image to (optional)
-#additionalregion=eastus
-# Run output name
-#runOutputName=aibWindows
-runOutputName=aib-windows-image
 
+# Run output name
+runOutputName=aib-windows-image
 # Name of the new image template
-# To keep a version control over templates, it can be named with date and time
-# templateName=image-template-$( date '+%F-%H%M%S' )
 templateName=it-win11-multi-session-latest
 # Name of the image to be created
-# imageName=img-win11-multi-session-latest-2
 imageName=img-win11-multi-session-latest
+# Name of compute gallery to share the custom image
+computeGalleryName=acg_compute_gallery_avd_demo_westeu_01
+# Name of image definition
+imageDefinition=image-definition-avd-default
+
+############ Automatic variables and resource creation
 
 subscriptionID=$(az account show --query id --output tsv)
 
@@ -137,3 +134,38 @@ az resource invoke-action \
 # az image builder delete \
 # --name $templateName \
 # --resource-group $imageResourceGroup
+
+####################### Publish the image to an Azure Compute Gallery for cross-subscription sharing
+
+
+# Create a compute gallery
+az sig create \
+    --gallery-name $computeGalleryName \
+    --resource-group $imageResourceGroup \
+    --description "Compute gallery for AVD images" \
+    --tags Environment=Demo
+
+
+# Create an image definition (Image definitions create a logical grouping for images. They are used to manage information about the image versions that are created within them.)
+# This operation might take a long time depending on the replicate region number.
+az sig image-definition create \
+    --resource-group $imageResourceGroup \
+    --gallery-name $computeGalleryName \
+    --gallery-image-definition $imageDefinition \
+    --publisher Quorum \
+    --offer AVD \
+    --sku mySKU \
+    --os-type Windows \
+    --os-state generalized \
+    --hyper-v-generation V2
+
+
+# Create an image version and add it to the image definition in the shared gallery
+# --managed-image is the reference to the image to be added to the gallery
+# This step may take a long time to execute
+az sig image-version create \
+    --resource-group $imageResourceGroup \
+    --gallery-image-definition $imageDefinition \
+    --gallery-image-version 0.0.3 \
+    --gallery-name $computeGalleryName \
+    --managed-image $imageName

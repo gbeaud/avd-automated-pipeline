@@ -45,3 +45,5 @@ override.tf.json
 *.hcl
 /avd-terraform-deployment/test.tf
 /avd-bicep-deployment/run_bicep.azcli
+/test.azcli
+/acg-test.azcli
