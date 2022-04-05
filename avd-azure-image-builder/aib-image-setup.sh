@@ -24,7 +24,7 @@ az provider register -n Microsoft.Network
 
 ############ Cutom variables definitions
 
-imageResourceGroup=rg-imagebuilder-demo-westeu-01
+imageResourceGroup=rg-imagebuilder-demo-westeu-02
 location=westeurope
 
 # Run output name
