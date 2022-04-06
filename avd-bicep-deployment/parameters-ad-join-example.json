@@ -6,7 +6,10 @@
       "value": {
         "Environment": "Demo",
         "Source": "pauldotyu/azure-virtual-desktop-bicep",
-        "DomainJoined": "AD"
+        "DomainJoined": "AD",
+        "Intune": "Disabled",
+        "FSLogix": "Disabled",
+        "Image": "Marketplace"
       }
     },
     "aadJoin": {

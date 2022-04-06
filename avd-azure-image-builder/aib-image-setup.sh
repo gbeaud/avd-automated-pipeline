@@ -24,7 +24,7 @@ az provider register -n Microsoft.Network
 
 ############ Cutom variables definitions
 
-imageResourceGroup=rg-imagebuilder-demo-westeu-02
+imageResourceGroup=rg-imagebuilder-demo-westeu-01
 location=westeurope
 
 # Run output name
@@ -43,7 +43,7 @@ imageDefinition=image-definition-avd-default
 subscriptionID=$(az account show --query id --output tsv)
 
 # Create resource group
-az group create -n $imageResourceGroup -l $location
+az group create -n $imageResourceGroup -l $location -t Environment=Demo
 
 ############# Create user-assigned managed identity and grant permissions
 
@@ -166,6 +166,6 @@ az sig image-definition create \
 az sig image-version create \
     --resource-group $imageResourceGroup \
     --gallery-image-definition $imageDefinition \
-    --gallery-image-version 0.0.3 \
+    --gallery-image-version 0.0.1 \
     --gallery-name $computeGalleryName \
     --managed-image $imageName
