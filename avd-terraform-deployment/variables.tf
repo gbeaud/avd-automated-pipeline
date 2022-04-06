@@ -123,6 +123,11 @@ variable "image_resource_group" {
   description = "Resource group where custom image resides"
 }
 
+variable "gallery_name" {
+  type        = string
+  description = "Name of the compute gallery where custom image resides"
+}
+
 variable "deployment_name" {
   type        = string
   description = "Name of deployment, to be used as suffix to name objects"

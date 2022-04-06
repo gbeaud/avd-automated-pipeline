@@ -2,25 +2,19 @@ locals {
   registration_token = azurerm_virtual_desktop_host_pool_registration_info.registration_info.token
 }
 
-# Identify your custom image
+# Getting the custom image from another resource group in same subscription
 # data "azurerm_image" "image" {
 #   name                = var.image_name
 #   resource_group_name = var.image_resource_group
 # }
 
+# Getting the custom image from a compute gallery in another subscription
 data "azurerm_shared_image" "shared_image" {
   provider            = azurerm.landing_zone_collaboration_subscription
-  name                = "image-definition-avd-default"
-  gallery_name        = "acg_compute_gallery_avd_demo_westeu_01"
-  resource_group_name = "rg-imagebuilder-demo-westeu-01"
+  name                = var.image_name
+  gallery_name        = var.gallery_name
+  resource_group_name = var.image_resource_group
 }
-
-# Identify your custom image
-# data "azurerm_image" "image" {
-#   provider            = azurerm.landing_zone_collaboration_subscription
-#   name                = var.image_name
-#   resource_group_name = var.image_resource_group
-# }
 
 resource "random_string" "AVD_local_password" {
   count            = var.rdsh_count

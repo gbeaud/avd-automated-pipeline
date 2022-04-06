@@ -31,8 +31,9 @@ rdsh_count = 1
 #Reference to custom VM image
 # image_name = "img-win11-multi-session-latest"
 # image_resource_group = "rg-imagebuilder-test-westeu-01"
-image_name           = "img-win11-multi-session-latest-01"
+image_name           = "image-definition-avd-default"
 image_resource_group = "rg-imagebuilder-demo-westeu-01"
+gallery_name         = "acg_compute_gallery_avd_demo_westeu_01"
 
 #AVD artifacts
 # workspace = "ws-${var.deployment_name}"
