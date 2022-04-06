@@ -39,7 +39,7 @@ jobs:
     - name: 'Az login'
       uses: azure/login@v1
       with:
-        credentials: ${{ secrets.AZURE_CREDENTIALS_AIB }}
+        creds: ${{ secrets.AZURE_CREDENTIALS_AIB }}
         # Using OpenID:
         # client-id: ${{ secrets.AZURE_CLIENT_ID_IMAGE_BUILDER }}
         # tenant-id: ${{ secrets.AZURE_TENANT_ID }}
