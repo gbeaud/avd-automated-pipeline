@@ -41,7 +41,6 @@ jobs:
       with:
         # Using secrets/credentials:
         creds: ${{ secrets.AZURE_CREDENTIALS_AIB }}
-        allow-no-subscriptions: true
 
         # Using OpenID:
         # client-id: ${{ secrets.AZURE_CLIENT_ID_IMAGE_BUILDER }}
