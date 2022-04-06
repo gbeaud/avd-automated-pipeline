@@ -8,12 +8,19 @@ locals {
 #   resource_group_name = var.image_resource_group
 # }
 
-# Identify your custom image
-data "azurerm_image" "image" {
+data "azurerm_shared_image" "shared_image" {
   provider            = azurerm.landing_zone_collaboration_subscription
-  name                = var.image_name
-  resource_group_name = var.image_resource_group
+  name                = "img-win11-multi-session-latest-01"
+  gallery_name        = "acg_compute_gallery_avd_demo_westeu_01"
+  resource_group_name = "rg-imagebuilder-demo-westeu-01"
 }
+
+# Identify your custom image
+# data "azurerm_image" "image" {
+#   provider            = azurerm.landing_zone_collaboration_subscription
+#   name                = var.image_name
+#   resource_group_name = var.image_resource_group
+# }
 
 resource "random_string" "AVD_local_password" {
   count            = var.rdsh_count
@@ -81,8 +88,11 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
   #   version   = "latest"
   # }
 
-  # Custom image
-  source_image_id = data.azurerm_image.image.id
+  # Custom image when residing in same subscription
+  # source_image_id = data.azurerm_image.image.id
+
+  # Custom image when residing in a shared image gallery in another subscription
+  source_image_id = data.azurerm_shared_image.shared_image.id
 
   depends_on = [
     azurerm_resource_group.rg,
