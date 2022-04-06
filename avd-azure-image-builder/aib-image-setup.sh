@@ -24,7 +24,7 @@ az provider register -n Microsoft.Network
 
 ############ Cutom variables definitions
 
-imageResourceGroup=rg-imagebuilder-demo-westeu-03
+imageResourceGroup=rg-imagebuilder-demo-westeu-01
 location=westeurope
 
 # Run output name
@@ -32,9 +32,9 @@ runOutputName=aib-windows-image
 # Name of the new image template
 templateName=it-win11-multi-session-latest-01
 # Name of the image to be created
-imageName=img-win11-multi-session-latest
+imageName=img-win11-multi-session-latest-01
 # Name of compute gallery to share the custom image
-computeGalleryName=acg_compute_gallery_avd_demo_westeu_03
+computeGalleryName=acg_compute_gallery_avd_demo_westeu_01
 # Name of image definition
 imageDefinition=image-definition-avd-default
 
@@ -94,9 +94,9 @@ echo Template JSON file was created
 ######################## Create the image template
 
 # Deletes the previous template
-# az image builder delete \
-# --name $templateName \
-# --resource-group $imageResourceGroup
+az image builder delete \
+--name $templateName \
+--resource-group $imageResourceGroup
 
 # Submit the image configuration to the VM Image Builder service
 # WARNING: there may be a line break at the bottom of the JSON file causing a "LinkedInvalidPropertyId" error. Make sure the file is well formatted! The standard file should not be modified; ref to the original file: https://raw.githubusercontent.com/azure/azvmimagebuilder/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/temporaryImageTemplateWin.json
