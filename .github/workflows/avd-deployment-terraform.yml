@@ -1,6 +1,7 @@
 name: 'Terraform AVD deployment'
  
 on:
+  # Triggers the workflow when a commit is pushed to the main branch
   push:
     branches:
     - main
@@ -8,7 +9,12 @@ on:
     - avd-terraform-deployment/**
     - .github/workflows/avd-deployment-terraform.yml
   pull_request:
- 
+  # Triggers the workflow if the AIB image builder has completed, so AVD can be deployed with Terraform using the latest version of the custom image
+  workflow_run:
+    workflows: ["Image Builder"]
+    types:
+      - completed
+
 jobs:
   terraform:
     name: 'Terraform'

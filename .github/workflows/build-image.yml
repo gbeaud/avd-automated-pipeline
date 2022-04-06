@@ -42,7 +42,7 @@ jobs:
         # Using secrets/credentials:
         creds: ${{ secrets.AZURE_CREDENTIALS_AIB }}
 
-        # Using OpenID:
+        # Using OpenID (avoid this option because of token expiration given the image creation is a long task):
         # client-id: ${{ secrets.AZURE_CLIENT_ID_IMAGE_BUILDER }}
         # tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         # subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
