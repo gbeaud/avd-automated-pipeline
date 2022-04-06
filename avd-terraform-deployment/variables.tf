@@ -127,3 +127,21 @@ variable "deployment_name" {
   type        = string
   description = "Name of deployment, to be used as suffix to name objects"
 }
+
+variable "IDENTITY_SUBSCRIPTION_ID" {
+  type        = string
+  description = ""
+  sensitive   = true
+}
+
+variable "CONNECTIVITY_SUBSCRIPTION_ID" {
+  type        = string
+  description = ""
+  sensitive   = true
+}
+
+variable "LANDING_ZONE_COLLABORATION_SUBSCRIPTION_ID" {
+  type        = string
+  description = ""
+  sensitive   = true
+}
