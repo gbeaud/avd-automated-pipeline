@@ -61,7 +61,7 @@ jobs:
         tf_actions_subcommand: 'plan'
         tf_actions_working_dir: "./avd-terraform-deployment"
         tf_actions_comment: true
-        args: '-var="local_admin_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}" -var="domain_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}"'
+        args: '-var="local_admin_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}" -var="domain_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}" -var="IDENTITY_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID_IDENTITY }}" -var="CONNECTIVITY_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID_CONNECTIVITY }}" -var="LANDING_ZONE_COLLABORATION_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}"'
  
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -70,4 +70,5 @@ jobs:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'apply'
         tf_actions_working_dir: "./avd-terraform-deployment"
-        args: '-var="local_admin_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}" -var="domain_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}"'
+        # args: '-var="local_admin_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}" -var="domain_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}"'
+        args: '-var="local_admin_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}" -var="domain_password=${{ secrets.AVD_LOCAL_USER_PASSWORD }}" -var="IDENTITY_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID_IDENTITY }}" -var="CONNECTIVITY_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID_CONNECTIVITY }}" -var="LANDING_ZONE_COLLABORATION_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}"'
