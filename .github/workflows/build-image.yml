@@ -39,12 +39,11 @@ jobs:
     - name: 'Az login'
       uses: azure/login@v1
       with:
-          # Using OpenID:
-          # client-id: ${{ secrets.AZURE_CLIENT_ID_IMAGE_BUILDER }}
-          # tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          # subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
-        creds: ${{ secrets.AZURE_CREDENTIALS_AIB }}
-        allow-no-subscriptions: true
+        credentials: ${{ secrets.AZURE_CREDENTIALS_AIB }}
+        # Using OpenID:
+        # client-id: ${{ secrets.AZURE_CLIENT_ID_IMAGE_BUILDER }}
+        # tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        # subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
 
     - name: Azure CLI Action
       uses: Azure/cli@v1
