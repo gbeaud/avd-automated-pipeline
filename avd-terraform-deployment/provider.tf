@@ -44,7 +44,7 @@ provider "azurerm" {
   features {}
   skip_provider_registration = "true"
   alias                      = "identity_subscription"
-  subscription_id            = "${var.IDENTITY_SUBSCRIPTION_ID}"
+  subscription_id            = var.IDENTITY_SUBSCRIPTION_ID
 }
 
 # Adding reference to connectivity/hub subscription to use terraform across subscriptions
@@ -52,7 +52,7 @@ provider "azurerm" {
   features {}
   skip_provider_registration = "true"
   alias                      = "connectivity_subscription"
-  subscription_id            = "${var.CONNECTIVITY_SUBSCRIPTION_ID}"
+  subscription_id            = var.CONNECTIVITY_SUBSCRIPTION_ID
 }
 
 # Adding reference to connectivity/hub subscription to use terraform across subscriptions
@@ -60,5 +60,5 @@ provider "azurerm" {
   features {}
   skip_provider_registration = "true"
   alias                      = "landing_zone_collaboration_subscription"
-  subscription_id            = "${var.LANDING_ZONE_COLLABORATION_SUBSCRIPTION_ID}"
+  subscription_id            = var.LANDING_ZONE_COLLABORATION_SUBSCRIPTION_ID
 }
