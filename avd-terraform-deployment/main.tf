@@ -3,6 +3,9 @@ resource "azurerm_resource_group" "rg" {
   # name     = var.rg_name
   name     = "rg-${var.deployment_name}"
   location = var.deploy_location
+  tags = {
+    Environment = "Demo"
+  }
 }
 
 # Create AVD workspace
@@ -43,7 +46,11 @@ resource "azurerm_virtual_desktop_host_pool" "hostpool" {
 resource "azurerm_virtual_desktop_host_pool_registration_info" "registration_info" {
   hostpool_id = azurerm_virtual_desktop_host_pool.hostpool.id
   # Expiration date must be within 30 days
-  expiration_date = "2022-04-03T23:40:52Z"
+  # "${timestamp()}"
+  # timeadd(timestamp(), "720h")
+  # expiration_date = "2022-04-03T23:40:52Z"
+  # Token expiration date must be between 1 hour and 30 days from now
+  expiration_date = timeadd(timestamp(), "720h")
 }
 
 # Create AVD DAG
