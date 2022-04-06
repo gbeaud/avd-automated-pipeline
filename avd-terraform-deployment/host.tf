@@ -8,6 +8,13 @@ locals {
 #   resource_group_name = var.image_resource_group
 # }
 
+# Identify your custom image
+data "azurerm_image" "image" {
+  provider            = azurerm.landing_zone_collaboration_subscription
+  name                = var.image_name
+  resource_group_name = var.image_resource_group
+}
+
 resource "random_string" "AVD_local_password" {
   count            = var.rdsh_count
   length           = 16
@@ -67,15 +74,15 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
   # }
 
   # Windows 11 multi-session
-  source_image_reference {
-    publisher = "MicrosoftWindowsDesktop"
-    offer     = "office-365"
-    sku       = "win11-21h2-avd-m365"
-    version   = "latest"
-  }
+  # source_image_reference {
+  #   publisher = "MicrosoftWindowsDesktop"
+  #   offer     = "office-365"
+  #   sku       = "win11-21h2-avd-m365"
+  #   version   = "latest"
+  # }
 
   # Custom image
-  # source_image_id = data.azurerm_image.image.id
+  source_image_id = data.azurerm_image.image.id
 
   depends_on = [
     azurerm_resource_group.rg,
