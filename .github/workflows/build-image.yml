@@ -35,13 +35,16 @@ jobs:
     - name: 'Checkout'
       uses: actions/checkout@v2
 
-    # Login using OpenID
-    - name: 'Az OpenID CLI login'
+    # Login using credentials instead of OpenID to avoid timeout
+    - name: 'Az login'
       uses: azure/login@v1
       with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID_IMAGE_BUILDER }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
+          # Using OpenID:
+          # client-id: ${{ secrets.AZURE_CLIENT_ID_IMAGE_BUILDER }}
+          # tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          # subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID_COLLABORATION }}
+        creds: ${{ secrets.AZURE_CREDENTIALS_AIB }}
+        allow-no-subscriptions: true
 
     - name: Azure CLI Action
       uses: Azure/cli@v1
