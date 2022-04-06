@@ -10,7 +10,7 @@ locals {
 
 data "azurerm_shared_image" "shared_image" {
   provider            = azurerm.landing_zone_collaboration_subscription
-  name                = "img-win11-multi-session-latest-01"
+  name                = "image-definition-avd-default"
   gallery_name        = "acg_compute_gallery_avd_demo_westeu_01"
   resource_group_name = "rg-imagebuilder-demo-westeu-01"
 }
