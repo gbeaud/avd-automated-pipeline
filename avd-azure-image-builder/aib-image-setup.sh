@@ -24,17 +24,17 @@ az provider register -n Microsoft.Network
 
 ############ Cutom variables definitions
 
-imageResourceGroup=rg-imagebuilder-demo-westeu-01
+imageResourceGroup=rg-imagebuilder-demo-westeu-03
 location=westeurope
 
 # Run output name
 runOutputName=aib-windows-image
 # Name of the new image template
-templateName=it-win11-multi-session-latest
+templateName=it-win11-multi-session-latest-03
 # Name of the image to be created
 imageName=img-win11-multi-session-latest
 # Name of compute gallery to share the custom image
-computeGalleryName=acg_compute_gallery_avd_demo_westeu_01
+computeGalleryName=acg_compute_gallery_avd_demo_westeu_03
 # Name of image definition
 imageDefinition=image-definition-avd-default
 
