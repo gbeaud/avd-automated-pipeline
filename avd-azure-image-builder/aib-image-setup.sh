@@ -43,7 +43,7 @@ imageDefinition=image-definition-avd-default
 subscriptionID=$(az account show --query id --output tsv)
 
 # Create resource group
-az group create -n $imageResourceGroup -l $location -t Environment=Demo
+az group create -n $imageResourceGroup -l $location --tags Environment=Demo
 
 ############# Create user-assigned managed identity and grant permissions
 
