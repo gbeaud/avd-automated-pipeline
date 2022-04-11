@@ -114,7 +114,7 @@ az resource create \
 # --name $imageName \
 # --resource-group $imageResourceGroup
 
-# Builds the image (This may take about 15-20 minutes)
+# Builds the image (This may take about 1 hour in some cases)
 az resource invoke-action \
 --resource-group $imageResourceGroup \
 --resource-type Microsoft.VirtualMachineImages/imageTemplates \
