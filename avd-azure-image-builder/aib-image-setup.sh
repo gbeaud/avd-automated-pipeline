@@ -48,8 +48,8 @@ az group create -n $imageResourceGroup -l $location --tags Environment=Demo
 ############# Create user-assigned managed identity and grant permissions
 
 # Create user assigned identity for image builder to access the storage account where the script is located
-#identityName=aibBuiUserId$(date +'%s')
-identityName=aibBuiUserId
+identityName=aibBuiUserId$(date +'%s')
+# identityName=aibBuiUserId
 az identity create -g $imageResourceGroup -n $identityName
 
 # Get identity id
@@ -64,8 +64,8 @@ imgBuilderId=/subscriptions/$subscriptionID/resourcegroups/$imageResourceGroup/p
 # Download custom role stored in the present git repo, may be edited
 curl https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-azure-image-builder/aibRoleTemplate.json -o aibRoleImageCreation.json
 
-#imageRoleDefName="Azure Image Builder Image Def"$(date +'%s')
-imageRoleDefName="Azure Image Builder Image Definition"
+imageRoleDefName="Azure Image Builder Image Definition"$(date +'%s')
+# imageRoleDefName="Azure Image Builder Image Definition"
 
 # Update the role definition template with parameters corresponding to this execution environment
 sed -i -e "s/<subscriptionID>/$subscriptionID/g" aibRoleImageCreation.json
