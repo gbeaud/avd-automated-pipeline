@@ -70,7 +70,7 @@ imageRoleDefName="Azure Image Builder Image Definition"
 # Update the role definition template with parameters corresponding to this execution environment
 sed -i -e "s/<subscriptionID>/$subscriptionID/g" aibRoleImageCreation.json
 sed -i -e "s/<rgName>/$imageResourceGroup/g" aibRoleImageCreation.json
-sed -i -e "s/Azure Image Builder Service Image Creation Role/$imageRoleDefName/g" aibRoleImageCreation.json
+# sed -i -e "s/Azure Image Builder Service Image Creation Role/$imageRoleDefName/g" aibRoleImageCreation.json
 
 # Create role definitions
 az role definition create --role-definition ./aibRoleImageCreation.json
