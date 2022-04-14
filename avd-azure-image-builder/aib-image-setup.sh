@@ -68,7 +68,7 @@ imgBuilderId=/subscriptions/$subscriptionID/resourcegroups/$imageResourceGroup/p
 # Download custom role stored in the present git repo, may be edited
 curl https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-azure-image-builder/aibRoleTemplate.json -o aibRoleImageCreation.json
 
-# imageRoleDefName="Azure Image Builder Image Definition"$(date +'%s')
+# imageRoleDefName="Azure Image Builder Image Definition"$(date +'%s') 
 imageRoleDefName="Azure Image Builder Image Definition"
 
 # Update the role definition template with parameters corresponding to this execution environment
