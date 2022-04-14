@@ -62,7 +62,7 @@ imgBuilderId=/subscriptions/$subscriptionID/resourcegroups/$imageResourceGroup/p
 # curl https://raw.githubusercontent.com/azure/azvmimagebuilder/master/solutions/12_Creating_AIB_Security_Roles/aibRoleImageCreation.json -o aibRoleImageCreation.json
 
 # Download custom role stored in the present git repo, may be edited
-curl https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-azure-image-builder/aibRoleImageCreation.json -o aibRoleImageCreation.json
+curl https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-azure-image-builder/aibRoleTemplate.json -o aibRoleImageCreation.json
 
 #imageRoleDefName="Azure Image Builder Image Def"$(date +'%s')
 imageRoleDefName="Azure Image Builder Image Definition"
