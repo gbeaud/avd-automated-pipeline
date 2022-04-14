@@ -176,3 +176,4 @@ az sig image-version create \
     --gallery-image-version 0.0.1 \
     --gallery-name $computeGalleryName \
     --managed-image $imageName
+
