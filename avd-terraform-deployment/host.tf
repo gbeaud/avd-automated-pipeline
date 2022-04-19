@@ -8,13 +8,13 @@ locals {
 #   resource_group_name = var.image_resource_group
 # }
 
-# Getting the custom image from a compute gallery in another subscription
-# data "azurerm_shared_image" "shared_image" {
-#   provider            = azurerm.landing_zone_collaboration_subscription
-#   name                = var.image_name
-#   gallery_name        = var.gallery_name
-#   resource_group_name = var.image_resource_group
-# }
+Getting the custom image from a compute gallery in another subscription
+data "azurerm_shared_image" "shared_image" {
+  provider            = azurerm.landing_zone_collaboration_subscription
+  name                = var.image_name
+  gallery_name        = var.gallery_name
+  resource_group_name = var.image_resource_group
+}
 
 resource "random_string" "AVD_local_password" {
   count            = var.rdsh_count
@@ -75,18 +75,18 @@ resource "azurerm_windows_virtual_machine" "avd_vm" {
   # }
 
   # Windows 11 multi-session from Marketplace
-  source_image_reference {
-    publisher = "MicrosoftWindowsDesktop"
-    offer     = "office-365"
-    sku       = "win11-21h2-avd-m365"
-    version   = "latest"
-  }
+  # source_image_reference {
+  #   publisher = "MicrosoftWindowsDesktop"
+  #   offer     = "office-365"
+  #   sku       = "win11-21h2-avd-m365"
+  #   version   = "latest"
+  # }
 
   # Custom image when residing in same subscription
   # source_image_id = data.azurerm_image.image.id
 
   # Custom image when residing in a shared image gallery in another subscription
-  # source_image_id = data.azurerm_shared_image.shared_image.id
+  source_image_id = data.azurerm_shared_image.shared_image.id
 
   depends_on = [
     azurerm_resource_group.rg,
