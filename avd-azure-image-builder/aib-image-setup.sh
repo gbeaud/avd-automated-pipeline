@@ -114,7 +114,7 @@ az resource create \
 --is-full-object \
 --name $templateName
 
-######################## Builds the image
+######################## Builds the image 
 
 # Ensures there is no previous image with the same name
 az image delete \
