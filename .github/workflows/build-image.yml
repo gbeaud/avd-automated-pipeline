@@ -54,6 +54,6 @@ jobs:
         # Specify the script here
         # $GITHUB_WORKSPACE = variable containing the root github repo
         inlineScript: |
-          chmod +x $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
-          $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.sh
+          chmod +x $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.azcli
+          $GITHUB_WORKSPACE/avd-azure-image-builder/aib-image-setup.azcli
           echo end of CLI action

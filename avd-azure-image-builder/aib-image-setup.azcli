@@ -37,6 +37,8 @@ imageName=img-win11-multi-session-latest-01
 computeGalleryName=acg_compute_gallery_avd_demo_westeu_01
 # Name of image definition
 imageDefinition=image-definition-avd-default
+# Gallery image version (must be in <MajorVersion>.<MinorVersion>.<Patch> format)
+galleryImageVersion=0.0.2
 
 ############ Automatic variables and resource creation
 
@@ -136,12 +138,6 @@ az resource invoke-action \
 
 # https://docs.microsoft.com/en-us/azure/virtual-machines/windows/image-builder-powershell
 
-# To keep a versioning/history of image templates, remove the below command.
-
-# az image builder delete \
-# --name $templateName \
-# --resource-group $imageResourceGroup
-
 ####################### Publish the image to an Azure Compute Gallery for cross-subscription sharing
 
 
@@ -166,14 +162,14 @@ az sig image-definition create \
     --os-state generalized \
     --hyper-v-generation V2
 
-
 # Create an image version and add it to the image definition in the shared gallery
 # --managed-image is the reference to the image to be added to the gallery
 # This step may take a long time to execute
 az sig image-version create \
     --resource-group $imageResourceGroup \
     --gallery-image-definition $imageDefinition \
-    --gallery-image-version 0.0.1 \
+    # --gallery-image-version 0.0.1 \
+    --gallery-image-version $galleryImageVersion \
     --gallery-name $computeGalleryName \
     --managed-image $imageName
 
