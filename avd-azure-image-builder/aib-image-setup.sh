@@ -62,7 +62,7 @@ imgBuilderCliId=$(az identity show -g $imageResourceGroup -n $identityName --que
 # Get the user identity URI, needed for the template
 imgBuilderId=/subscriptions/$subscriptionID/resourcegroups/$imageResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/$identityName
 
-# Download preconfigured role definition example
+# Download preconfigured role definition example 
 # curl https://raw.githubusercontent.com/azure/azvmimagebuilder/master/solutions/12_Creating_AIB_Security_Roles/aibRoleImageCreation.json -o aibRoleImageCreation.json
 
 # Download custom role stored in the present git repo, may be edited
