@@ -174,9 +174,9 @@ az sig image-version delete \
 # This step may take a long time to execute
 az sig image-version create \
     --resource-group $imageResourceGroup \
-    --gallery-image-definition $imageDefinition \
-    # --gallery-image-version 0.0.1 \
-    --gallery-image-version $galleryImageVersion \
     --gallery-name $computeGalleryName \
+    --gallery-image-definition $imageDefinition \
+    --gallery-image-version $galleryImageVersion \
     --managed-image $imageName
+    # --gallery-image-version 0.0.1 \ 
 
