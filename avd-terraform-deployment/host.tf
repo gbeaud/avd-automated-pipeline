@@ -8,7 +8,7 @@ locals {
 #   resource_group_name = var.image_resource_group
 # }
 
-Getting the custom image from a compute gallery in another subscription
+# Getting the custom image from a compute gallery in another subscription
 data "azurerm_shared_image" "shared_image" {
   provider            = azurerm.landing_zone_collaboration_subscription
   name                = var.image_name
