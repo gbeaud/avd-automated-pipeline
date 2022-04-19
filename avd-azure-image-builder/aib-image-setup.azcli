@@ -38,7 +38,7 @@ computeGalleryName=acg_compute_gallery_avd_demo_westeu_01
 # Name of image definition
 imageDefinition=image-definition-avd-default
 # Gallery image version (must be in <MajorVersion>.<MinorVersion>.<Patch> format)
-galleryImageVersion=0.0.2
+galleryImageVersion=0.0.1
 
 ############ Automatic variables and resource creation
 
@@ -161,6 +161,13 @@ az sig image-definition create \
     --os-type Windows \
     --os-state generalized \
     --hyper-v-generation V2
+
+# Ensures there is no version with same name. To create a new version, run the script with a new value for the $galleryImageVersion variable
+az sig image-version delete \
+    --gallery-image-definition $imageDefinition \
+    --gallery-image-version $galleryImageVersion \
+    --gallery-name $computeGalleryName \
+    --resource-group $imageResourceGroup
 
 # Create an image version and add it to the image definition in the shared gallery
 # --managed-image is the reference to the image to be added to the gallery
