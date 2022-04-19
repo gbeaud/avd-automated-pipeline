@@ -79,7 +79,7 @@ sed -i -e "s/Azure Image Builder Service Image Creation Role/$imageRoleDefName/g
 # Create role definitions
 az role definition create --role-definition ./aibRoleImageCreation.json
 
-# Grant role definition to the user assigned identity
+# Grant role definition to the user assigned identity 
 az role assignment create \
 --assignee $imgBuilderCliId \
 --role "$imageRoleDefName" \
