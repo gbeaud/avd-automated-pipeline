@@ -171,7 +171,7 @@ az sig image-version delete \
 
 # Create an image version and add it to the image definition in the shared gallery
 # --managed-image is the reference to the image to be added to the gallery
-# This step may take a long time to execute
+# This step may take a long time to execute 
 az sig image-version create \
     --resource-group $imageResourceGroup \
     --gallery-name $computeGalleryName \
