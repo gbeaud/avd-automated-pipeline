@@ -150,3 +150,8 @@ variable "LANDING_ZONE_COLLABORATION_SUBSCRIPTION_ID" {
   description = ""
   sensitive   = true
 }
+
+variable "fslogix_config_file" {
+  type    = string
+  default = "fslogix-config.ps1"
+}

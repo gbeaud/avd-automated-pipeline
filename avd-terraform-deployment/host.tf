@@ -161,3 +161,22 @@ PROTECTED_SETTINGS
     azurerm_virtual_desktop_host_pool.hostpool
   ]
 }
+
+
+resource "azurerm_virtual_machine_extension" "vmext_fslogix" {
+  count                      = var.rdsh_count
+  name                       = "${var.prefix}${count.index + 1}-FSLogix"
+  virtual_machine_id         = azurerm_windows_virtual_machine.avd_vm.*.id[count.index]
+  publisher                  = "Microsoft.Azure.Extensions"
+  type                       = "CustomScript"
+  type_handler_version       = "2.0"
+  auto_upgrade_minor_version = true
+
+  # Runs the file "fslogix-config.ps1" contained in the variable fslogix_config_file upon VM creation
+  protected_settings = <<PROT
+  {
+      "script": "${base64encode(file(var.fslogix_config_file))}"
+  }
+  PROT
+
+}
