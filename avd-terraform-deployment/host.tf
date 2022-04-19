@@ -2,7 +2,7 @@ locals {
   registration_token = azurerm_virtual_desktop_host_pool_registration_info.registration_info.token
 }
 
-# Getting the custom image from another resource group in same subscription
+# Getting the custom image from another resource group in the same subscription
 # data "azurerm_image" "image" {
 #   name                = var.image_name
 #   resource_group_name = var.image_resource_group
