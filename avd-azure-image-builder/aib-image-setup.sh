@@ -117,9 +117,9 @@ az resource create \
 ######################## Builds the image
 
 # Ensures there is no previous image with the same name
-# az image delete \
-# --name $imageName \
-# --resource-group $imageResourceGroup
+az image delete \
+--name $imageName \
+--resource-group $imageResourceGroup
 
 # Builds the image (This may take about 1 hour in some cases)
 az resource invoke-action \
