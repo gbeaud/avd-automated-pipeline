@@ -23,7 +23,7 @@ provider "azurerm" {
   features {}
 }
 
-# # Adding reference to identity subscription to use terraform across subscriptions
+# # Adding reference to identity subscription to use terraform across subscriptions 
 # provider "azurerm" {
 #   features {}
 #   skip_provider_registration = "true"
