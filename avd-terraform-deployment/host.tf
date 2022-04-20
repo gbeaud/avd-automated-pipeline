@@ -163,20 +163,36 @@ PROTECTED_SETTINGS
 }
 
 
-resource "azurerm_virtual_machine_extension" "vmext_fslogix-2" {
-  count                      = var.rdsh_count
-  name                       = "${var.prefix}${count.index + 1}-FSLogix"
-  virtual_machine_id         = azurerm_windows_virtual_machine.avd_vm.*.id[count.index]
-  publisher                  = "Microsoft.Powershell"
-  type                       = "DSC"
-  type_handler_version       = "2.73"
-  auto_upgrade_minor_version = true
+# resource "azurerm_virtual_machine_extension" "vmext_fslogix-2" {
+#   count                      = var.rdsh_count
+#   name                       = "${var.prefix}${count.index + 1}-FSLogix"
+#   virtual_machine_id         = azurerm_windows_virtual_machine.avd_vm.*.id[count.index]
+#   publisher                  = "Microsoft.Powershell"
+#   type                       = "DSC"
+#   type_handler_version       = "2.73"
+#   auto_upgrade_minor_version = true
 
-  # Runs the file "fslogix-config.ps1" contained in the variable fslogix_config_file upon VM creation 
-  protected_settings = <<PROT
-  {
-      "script": "${base64encode(file(var.fslogix_config_file))}"
-  }
-  PROT
+#   # Runs the file "fslogix-config.ps1" contained in the variable fslogix_config_file upon VM creation 
+#   protected_settings = <<PROT
+#   {
+#       "script": "${base64encode(file(var.fslogix_config_file))}"
+#   }
+#   PROT
+
+# }
+
+resource "azurerm_virtual_machine_extension" "vmext_fslogix_3" {
+  name                 = "${var.prefix}${count.index + 1}-FSLogix-3"
+  virtual_machine_id   = azurerm_windows_virtual_machine.avd_vm.*.id[count.index]
+  publisher            = "Microsoft.Compute"
+  type                 = "CustomScriptExtension"
+  type_handler_version = "1.10"
+
+  settings = <<SETTINGS
+    {
+        "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File fslogix-config.ps1",
+        "fileUris": ["https://raw.githubusercontent.com/gbeaud/avd-automated-pipeline/main/avd-terraform-deployment/fslogix-config.ps1"]
+    }
+SETTINGS
 
 }
