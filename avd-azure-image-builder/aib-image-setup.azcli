@@ -181,7 +181,7 @@ az sig image-version create \
     --gallery-name $computeGalleryName \
     --gallery-image-definition $imageDefinition \
     --gallery-image-version $galleryImageVersion \
-    --managed-image $imageName
+    --managed-image $imageName \
     --tags Timestamp=$(date +%F_%T)
     # --gallery-image-version 0.0.1 \ 
 
