@@ -167,9 +167,9 @@ resource "azurerm_virtual_machine_extension" "vmext_fslogix" {
   count                      = var.rdsh_count
   name                       = "${var.prefix}${count.index + 1}-FSLogix"
   virtual_machine_id         = azurerm_windows_virtual_machine.avd_vm.*.id[count.index]
-  publisher                  = "Microsoft.Azure.Extensions"
-  type                       = "CustomScript"
-  type_handler_version       = "2.0"
+  publisher                  = "Microsoft.Powershell"
+  type                       = "DSC"
+  type_handler_version       = "2.73"
   auto_upgrade_minor_version = true
 
   # Runs the file "fslogix-config.ps1" contained in the variable fslogix_config_file upon VM creation 
