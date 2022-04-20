@@ -10,10 +10,10 @@ on:
     - .github/workflows/avd-deployment-terraform.yml
   pull_request:
   # Triggers the workflow if the AIB image builder has completed, so AVD can be deployed with Terraform using the latest version of the custom image
-  workflow_run:
-    workflows: ["Image Builder"]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ["Image Builder"]
+  #   types:
+  #     - completed
 
 jobs:
   terraform:
