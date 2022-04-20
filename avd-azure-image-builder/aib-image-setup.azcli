@@ -114,7 +114,9 @@ az resource create \
 --resource-type Microsoft.VirtualMachineImages/imageTemplates \
 --properties @temporaryImageTemplateWin.json \
 --is-full-object \
---name $templateName
+--name $templateName \
+--tags Timestamp=$(date +%F_%T)
+
 
 ######################## Builds the image 
 
@@ -160,14 +162,16 @@ az sig image-definition create \
     --sku mySKU \
     --os-type Windows \
     --os-state generalized \
-    --hyper-v-generation V2
+    --hyper-v-generation V2 \
+    --tags Timestamp=$(date +%F_%T)
+
 
 # Ensures there is no version with same name. To create a new version, run the script with a new value for the $galleryImageVersion variable
-az sig image-version delete \
-    --gallery-image-definition $imageDefinition \
-    --gallery-image-version $galleryImageVersion \
-    --gallery-name $computeGalleryName \
-    --resource-group $imageResourceGroup
+# az sig image-version delete \
+#     --gallery-image-definition $imageDefinition \
+#     --gallery-image-version $galleryImageVersion \
+#     --gallery-name $computeGalleryName \
+#     --resource-group $imageResourceGroup
 
 # Create an image version and add it to the image definition in the shared gallery
 # --managed-image is the reference to the image to be added to the gallery
