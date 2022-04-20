@@ -177,7 +177,7 @@ PROTECTED_SETTINGS
 #   {
 #       "script": "${base64encode(file(var.fslogix_config_file))}"
 #   }
-#   PROT
+#   PROT 
 
 # }
 
