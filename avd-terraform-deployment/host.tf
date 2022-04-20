@@ -182,6 +182,7 @@ PROTECTED_SETTINGS
 # }
 
 resource "azurerm_virtual_machine_extension" "vmext_fslogix_3" {
+  count                = var.rdsh_count
   name                 = "${var.prefix}${count.index + 1}-FSLogix-3"
   virtual_machine_id   = azurerm_windows_virtual_machine.avd_vm.*.id[count.index]
   publisher            = "Microsoft.Compute"
