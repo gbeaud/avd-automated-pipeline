@@ -22,7 +22,7 @@ hub_vnet = "vnet-hub-connectivity-prod-westeu"
 vnet_range   = ["10.20.0.0/16"]
 subnet_range = ["10.20.0.0/24"]
 
-#Storage
+#Storage 
 
 #Hosts
 #Number of hosts to deploy
