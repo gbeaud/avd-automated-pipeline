@@ -107,7 +107,7 @@ az image builder delete \
 --name $templateName \
 --resource-group $imageResourceGroup
 
-# Submit the image configuration to the VM Image Builder service
+# Submit the image configuration to the VM Image Builder service 
 # WARNING: there may be a line break at the bottom of the JSON file causing a "LinkedInvalidPropertyId" error. Make sure the file is well formatted! The standard file should not be modified; ref to the original file: https://raw.githubusercontent.com/azure/azvmimagebuilder/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/temporaryImageTemplateWin.json
 az resource create \
 --resource-group $imageResourceGroup \
