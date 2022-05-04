@@ -4,8 +4,8 @@
 
 # Basics
 deploy_location = "west europe"
-deployment_name = "avd-terraform-demo-westeu-01"
-rg_name         = "rg-avd-terraform-demo-westeu-01"
+deployment_name = "avd-terraform-demo-westeu-02"
+rg_name         = "rg-avd-terraform-demo-westeu-02"
 
 #Active Directory variables
 ad_rg          = "rg-domain-controler-westeurope"
@@ -19,8 +19,8 @@ hub_rg   = "rg-hub-connectivity-prod-westeu"
 hub_vnet = "vnet-hub-connectivity-prod-westeu"
 
 #Network
-vnet_range   = ["10.20.0.0/16"]
-subnet_range = ["10.20.0.0/24"]
+vnet_range   = ["10.21.0.0/16"]
+subnet_range = ["10.21.0.0/24"]
 
 #Storage 
 
