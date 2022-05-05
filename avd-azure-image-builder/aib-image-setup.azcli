@@ -114,8 +114,8 @@ az resource create \
 --resource-type Microsoft.VirtualMachineImages/imageTemplates \
 --properties @temporaryImageTemplateWin.json \
 --is-full-object \
---name $templateName \
---tags Timestamp=$(date +%F_%T)
+--name $templateName
+#--tags Timestamp=$(date +%F_%T)
 
 
 ######################## Builds the image 
